@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Robert's Burgers</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>    
+    <header class="header">
+        <nav class="navBar">
+            <div class="logo">
+                <img src="robertslogo.png" alt="Logo" height="100" width="200">
+            </div>
+            <div class="links">
+                <ul class="ulLinks">
+                    <li><a href="#Inicio">Inicio</a></li>
+                    <li><a href="#Eventos">Eventos</a></li>
+                    <li><a href="#Locales">Locales</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="presentacion">
+        <img class="imagenesDescripcion" id="hamburguesaDescripcion" src="../Imagenes_Menu/Hamburguesa_Descripcion.png">
+        <div id="divPresentacion">  
+            <p class="decripcionPresentacion">¡Bienvenidos a Robert's Burgers, el lugar donde los sueños de las hamburguesas se hacen realidad!
+                <br><br>
+                En Robert's Burgers, nos enorgullecemos de ofrecer la mejor experiencia gastronómica para los amantes de las hamburguesas.
+                Nuestras hamburguesas están hechas con carne de la más alta calidad, 
+                seleccionada cuidadosamente para garantizar jugosidad y sabor en cada bocado.<span id="dotsReadMorePresentacion">...</span><span id="moreTextPresentacion">
+                <br><br>
+                Además, ofrecemos una amplia variedad de opciones, desde las clásicas hamburguesas de carne de res 
+                hasta opciones vegetarianas y veganas, para satisfacer todos los gustos y preferencias.
+                <br><br>
+                Nuestro compromiso con la frescura y la calidad se refleja en cada ingrediente, 
+                desde el pan recién horneado hasta las salsas caseras y los vegetales frescos.
+                <br><br>
+                En Robert's Burgers, no solo servimos hamburguesas, 
+                ¡creamos experiencias memorables para nuestros clientes! 
+                Ven y únete a nosotros para disfrutar de una deliciosa comida en un ambiente acogedor y familiar.
+                <br><br>
+                ¡Te esperamos en Robert's Burgers para que descubras la verdadera pasión por las hamburguesas!
+            </span></p>
+
+            <button onclick="readMorePresentacion()" id="btnReadMorePresentacion">Read more</button>
+        </div>
+        <img class="imagenesDescripcion" id="malteadaDescripcion" src="../Imagenes_Menu/Malteada_Descripcion.png">
+    </div>
+
+    <div>
+        <div class="menu">
+            <div class="categoria" id="entradas">
+                <p class="pCategoria"><button class="mostrarCategoria">&#9654; &nbsp; Entradas</button></p>
+                <ul id="listaItemsEntrada">
+                    <li id="idArosCebolla">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/Aros_Cebolla.jpg">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Aros de Cebolla</button>
+                                <span class="precio" if="precioArosCebolla">14000</span>
+                                COP
+                            </h3>
+
+                            <div class="descCarrito">
+                                <p class="descripcion">Deliciosos aros de cebolla rebozados y fritos hasta obtener una textura crujiente por fuera y suave por dentro.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Aros de Cebolla">
+                                <input type="hidden" class="precio-producto" value="14000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idPalitosMozzarella">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/Palitos_Mozzarella.jpg">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Palitos de Mozzarella</button>
+                                <span class="precio" id="precioPalitosMozzarella">10000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Irresistibles palitos de queso mozzarella fritos hasta alcanzar una textura crujiente por fuera y fundente por dentro.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Palitos de Mozzarella">
+                                <input type="hidden" class="precio-producto" value="10000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idEnsaladaCesar">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/Ensalada_Cesar.jpg">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Ensalada César</button>
+                                <span class="precio" id="precioEnsaladaCesar">12000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Una combinación fresca de lechuga romana, crutones, queso parmesano rallado y aderezo César cremoso.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Ensalada César">
+                                <input type="hidden" class="precio-producto" value="12000">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                
+            </div>
+            <div  class="categoria" id="platosPrincipales">
+                <p class="pCategoria"><button class="mostrarCategoria">&#9654; &nbsp; Platos Principales</button></p>
+                <ul id="listaItemsPlatosPrincipales">
+                    <li id="idHamburguesaClasica">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/hamburguesa_clasica.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Hamburguesa Clasica</button>
+                                <span class="precio" id="precioHamburguesaClasica">23000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">La clásica hamburguesa con carne de res, lechuga, tomate, cebolla y aderezos.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Hamburguesa Clasica">
+                                <input type="hidden" class="precio-producto" value="23000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idHamburguesaBBQ">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/hamburguesa_bbq.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Hamburguesa BBQ</button>
+                                <span class="precio" id="precioHamburguesaBBQ">28000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Hamburguesa con carne de res, salsa BBQ, queso cheddar, cebolla caramelizada y bacon.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Hamburguesa BBQ">
+                                <input type="hidden" class="precio-producto" value="28000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idHamburguesaRobert">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/hamburguesa_roberts.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Hamburguesa Robert's</button>
+                                <span class="precio" id="precioHamburguesaRoberts">25000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Hamburguesa con carne de res, huevo frito, bacon, queso cheddar y lechuga.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Hamburguesa Robert's">
+                                <input type="hidden" class="precio-producto" value="25000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idHamburguesaPollo">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/hamburguesa_pollo.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Hamburguesa De Pollo</button>
+                                <span class="precio" id="precioHamburguesaPollo">24000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Hamburguesa con filete de pollo a la parrilla, lechuga, tomate y mayonesa.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Hamburguesa De Pollo">
+                                <input type="hidden" class="precio-producto" value="24000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idHamburguesaTexpex">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/hamburguesa_texpex.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Hamburguesa Tex-Mex</button>
+                                <span class="precio" id="precioHamburguesaTexpex">29000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Hamburguesa con carne de res, guacamole, jalapeños, queso pepper jack y chipotle mayo.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Hamburguesa Tex-Mex">
+                                <input type="hidden" class="precio-producto" value="29000">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="categoria" id="bebidas">
+                <p class="pCategoria"><button class="mostrarCategoria">&#9654; &nbsp; Bebidas</button></p>
+                <ul id="listaItemsBebidas">
+                    <li id="idMalteada">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/malteada.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Malteada de Vainilla</button>
+                                <span class="precio" id="precioMalteada">12500</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Deliciosa malteada de vainilla hecha con helado cremoso y leche fresca.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Malteada de Vainilla">
+                                <input type="hidden" class="precio-producto" value="12500">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idLimonada">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/limonada.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Limonada</button>
+                                <span class="precio" id="precioLimonada">4000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Refrescante limonada preparada con limones frescos y un toque de azúcar.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Limonada">
+                                <input type="hidden" class="precio-producto" value="4000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idGaseosa">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/gaseosa.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Gaseosa 400ml</button>
+                                <span class="precio" id="precioGaseosa">5000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Refresco de gaseosa en presentación de 400ml.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Gaseosa 400ml">
+                                <input type="hidden" class="precio-producto" value="5000">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="categoria" id="postres">
+                <p class="pCategoria"><button class="mostrarCategoria">&#9654; &nbsp; Postres</button></p>
+                <ul id="listaItemsPostres">
+                    <li id="idBrownie">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/brownie.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Brownie de Chocolate</button>
+                                <span class="precio" id="precioBrownie">6000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Delicioso brownie de chocolate con nueces, servido caliente y acompañado de helado de vainilla.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Brownie de Chocolate">
+                                <input type="hidden" class="precio-producto" value="6000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idTartaManzana">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/Tarta_Manzana.jpg">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Tarta de Manzana</button>
+                                <span class="precio" id="precioTartaManzana">11000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Tarta de manzana casera con una base crujiente de masa, relleno de manzanas frescas y canela.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Tarta de Manzana">
+                                <input type="hidden" class="precio-producto" value="11000">
+                            </div>
+                        </div>
+                    </li>
+                    <li id="idCheesecake">
+                        <img class="imagenesPlatos" src="../Imagenes_Menu/cheesecake.png">
+                        <div class="item">
+                            <h3>
+                                <button class="mostrarDescripcionItem">&#9654; &nbsp; Cheesecake Frutos Rojos</button>
+                                <span class="precio" id="precioCheesecake">13000</span>
+                                COP
+                            </h3>
+                            <div class="descCarrito">
+                                <p class="descripcion">Cheesecake cremoso con una capa de frutos rojos frescos y un suave toque de mermelada.</p>
+                                <button class="añadir-carrito">Añadir al carrito</button>
+                                <input type="hidden" class="nombre-producto" value="Cheesecake Frutos Rojos">
+                                <input type="hidden" class="precio-producto" value="13000">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="carritoCompras">
+            <div class="itemsCarrito">
+                <h2 id="test">Carrito de Compras</h2>
+                <ul id="carrito_list">
+                </ul>
+                <button id="limpiarCarrito">Limpiar Carrito</button>
+            </div>
+            <div class="resumenPago">
+                <div class="resumen">
+                    <h2>Resumen</h2>
+                    <div id="totalTituloValor">
+                        <h7>Total: &nbsp;</h7>
+                        <textarea id="totalPrecio" disabled>0</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="pago">
+                <div class="innerPago">
+                    <img src="metodosdepago.png" class="imagenpago">
+                    <button class="botonComprar">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="somos">
+        <div class="container">
+            <h2 class="section-title">¿Quiénes somos?</h2>
+            <p class="section-description">Somos Carlos Sánchez y Mateo Vanegas, en Robert's cocinamos con pasión y dedicación para ofrecerte una experiencia gastronómica única.</p>
+            <p class="section-description">¡Ven y descubre el arte de la cocina en Robert's!</p>
+            </div>
+        </div>
+    </footer>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+/*
+    -------------
+    Navbar inicio
+    -------------
+*/
+#moreTextPresentacion {display: none;}
+/* Estilos para la barra de navegación */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Añadido para centrar el contenido horizontalmente */
+    background-color: #fff; /* Fondo blanco */
+    padding: 0px; /* Espaciado interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.nav-logo {
+    color: #ffd400; /* Color dorado */
+    text-decoration: none; /* Quitamos subrayado del enlace */
+}
+
+.navBar{
+    display: flex;
+    flex-direction: row;
+}
+.links {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 2;
+    flex-basis: 0;
+    text-decoration: none;
+    color: #333;
+    flex-grow: 1; 
+    align-items: center; 
+    margin-right: auto; 
+}
+
+.links ul {
+    display: flex; /* Asegura que los elementos de la lista se muestren en línea */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.links ul li {
+    margin-right: 20px; /* Espaciado entre los elementos de la lista */
+}
+
+.links ul li:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último elemento de la lista */
+}
+
+.links ul li a {
+    text-decoration: none;
+    color: #ffd23f;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+/*
+    ------------
+    Navbar Final
+    ------------
+*/
+
+/*----------------------*/
+
+/*
+    --------------
+    Carrito Inicio
+    --------------
+*/
+.resumenPago{
+    max-width: 400px;
+
+}
+
+.resumen {
+    flex: 1;
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 20px;
+    max-width: 400px;
+    color: white;
+}
+
+.pago {
+    flex: 1;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+}
+.carrito {
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 20px;
+    width: 300px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color:white;
+}
+
+.resumen,
+.innerPago {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 20px;
+    color:rgb(255, 162, 0);
+}
+.itemsCarrito,
+.resumenPago,
+.pago{
+    min-height: 205px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imagenpago{
+    width: 350px;
+}
+
+#total{
+    background-color: white;
+}
+
+.botonComprar{
+    padding: 10px 20px; 
+    background-color: rgb(255, 162, 0); 
+    color: black; 
+    border: black; 
+    border-radius: 5px; 
+
+}
+
+.carritoCompras{
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+#totalPrecio{
+    resize: none;
+    height: 1rem;
+    text-align: right;
+}
+
+#totalTituloValor{
+    display: flex;
+
+}
+
+.item-lista{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+/*
+    --------------
+    Carrito Final
+    --------------
+*/
+/*----------------------*/
+/*
+    -------------------
+    Landing Page Inicio
+    -------------------
+*/
+.añadir-carrito{
+    padding: 10px 20px;
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+*button :hover{
+    cursor: pointer;
+}
+html, body{
+    max-height: 100vw;
+    margin: 0;
+}
+
+#listaItemsEntrada,
+#listaItemsPlatosPrincipales,
+#listaItemsBebidas,
+#listaItemsPostres {
+    display: none;
+}
+
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+/*Imagenes*/
+
+.imagenesPlatos{
+    max-height: 108px;
+    aspect-ratio: 144 / 108;
+    object-fit: cover;
+}
+.imagenesDescripcion{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 20px 20px 20px 20px;
+    max-height: 150px;
+    aspect-ratio: 150 / 100;
+    object-fit: cover;
+}
+#hamburguesaDescripcion{
+    margin-left: 5px;
+}
+#malteadaDescripcion{
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+
+
+.presentacion{
+    align-items: center;
+    display: flex;
+    border-radius: 5px 5px 5px 5px;
+    font-family: sans-serif;
+    color:#000;
+    background-color: #ffa600;
+}
+#divPresentacion{
+    display: block;
+}
+.decripcionPresentacion{
+    padding: 10px;
+    margin: 0;
+
+    font-family: 'Arial', sans-serif;
+    font-size: 16px; /* Tamaño de fuente */
+    line-height: 1.5; /* Altura de línea para una mejor legibilidad */
+    color: #333; /* Color del texto */
+}
+body{
+    background-color: white;
+
+}
+#btnReadMorePresentacion{
+    margin: 5px;
+    border: 0;
+    background-color: transparent;
+    font-style: italic;
+    color: #000;
+    opacity: 0.8;
+}
+
+#listaItemsEntrada li{
+    display: flex;  
+}
+#listaItemsPlatosPrincipales li{
+    display: flex;  
+}
+#listaItemsBebidas li{
+    display: flex;  
+}
+#listaItemsPostres li{
+    display: flex;  
+}
+
+.mostrarCategoria{
+    border: 0;
+    background-color: transparent;
+    color: #000;
+    margin-left: 2px;
+    
+}
+
+.mostrarCategoria {
+    font-family: 'Hanley Pro Sans'; 
+    font-size: 24px; /* Tamaño de fuente */
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras */
+}
+#entradas{
+    justify-content: center;
+    font-size: 1rem;
+    min-height: 40px;
+    margin-bottom: px;
+    background-color:#A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+#platosPrincipales{
+    min-height: 40px;
+    margin-bottom: 0px;
+    background-color:#A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+#bebidas{
+    min-height: 40px;
+    margin-bottom: 0px;
+    background-color:#A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+#postres{
+    min-height: 40px;
+    margin-bottom: 0px;
+    background-color:#A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.menu ul li{
+    padding: 10px; 
+  }
+  
+  ul li:last-child {
+    padding-bottom: 10px;
+  }
+
+
+h3{
+    margin: 3px;
+}
+
+.mostrarDescripcionItem{
+    border: none;
+    background-color: transparent;
+    color: #000;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+.descCarrito {
+    margin-left: 20px;
+  }
+  
+.mostrar {
+    display: block; /* Muestra la descripción y el botón cuando la clase "mostrar" está presente */
+ }
+
+ #footer{
+    width: 100%;
+    background-color: #FCBAD3;
+    color: #000;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    justify-content: center
+ }
+
+#footer div {
+    max-width: 600px;
+    margin: auto; /* Centra el contenido horizontalmente */
+}
+ 
+.somos {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #BCE2E8; 
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.section-description {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.itemsCarrito {
+    height: 100%;
+    flex: 1;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.itemsCarrito h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.itemsCarrito ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.itemsCarrito button {
+    padding: 10px 20px;
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.itemsCarrito button:hover {
+    background-color: #ffbd4a;
+}
+
+.resumenPago {
+    flex: 1;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.resumen {
+    margin-bottom: 20px;
+}
+
+.resumen h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.total-container {
+    display: flex;
+    align-items: center;
+}
+
+.total-container h3 {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #333;
+}
+
+#total {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+.pago h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.imagenpago {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 20px;
+}
+
+.botonComprar {
+    padding: 10px 20px;
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botonComprar:hover {
+    background-color: #ffbd4a;
+}
+
+@media (max-width: 680px) {
+    .presentacion {
+        flex-direction: column;
+    }
+}
+
+/*
+    ------------------
+    Landing Page Final
+    ------------------
+*/

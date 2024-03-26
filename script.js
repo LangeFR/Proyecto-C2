@@ -139,13 +139,16 @@ function agregarProductoALista(nombreProducto, precioProducto) {
   const carrito = (localStorage.getItem('carrito')) || [];
   let yaEsta = false;
 
-  carrito.forEach(item => {
-      console.log("Revisando");
-      if(nombreProducto.equals(item.nombre)){
+  
+  for (var clave in listaJSON) {
+    if (listaJSON.hasOwnProperty(clave)) {
+      if (clave === nombreProducto) {
         yaEsta = true;
-        console.log("Ya esta");
+        listaJSON[clave].Cantidad++;
+        break; // Termina el bucle una vez que se encuentra el objeto
       }
-  });
+    }
+  }
 
   
   if(!yaEsta){
@@ -176,7 +179,15 @@ function agregarProductoALista(nombreProducto, precioProducto) {
     // Agrega el nuevo elemento a la lista en el otro HTML
     const listaEnOtroHTML = document.getElementById('carrito_list');
     listaEnOtroHTML.appendChild(nuevoElementoLista);
+
+    listaJSON[nombreProducto] = {
+      "Precio": precioProducto,
+      "Cantidad": 1
+    };
+
+    
   }
+  console.log(listaJSON);
   
 }
 
@@ -250,6 +261,7 @@ function cargarCarrito() {
 window.addEventListener('load', cargarCarrito);
 
 function limpiarCarrito() {
+  listaJSON = {};
   localStorage.removeItem('carrito');
   cargarCarrito();
   precioTotal = 0;

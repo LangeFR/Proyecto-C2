@@ -1,9 +1,13 @@
+var listaJSON = {};	
+
 /*
     -------------------
     Landing Page Inicio
     -------------------
 */
-
+async function cargarMenu(){
+  
+}
 function readMorePresentacion() {
   var dots = document.getElementById("dotsReadMorePresentacion");
   var moreText = document.getElementById("moreTextPresentacion");
@@ -129,33 +133,51 @@ botonesAgregar.forEach(boton => {
 
 // Función para agregar el nombre del producto a la lista en el otro HTML
 function agregarProductoALista(nombreProducto, precioProducto) {
-  // Crea un nuevo elemento de lista
-  const nuevoElementoLista = document.createElement('li');
-  nuevoElementoLista.classList.add('item-lista');
+  /*
+    Revisar si el producto ya esta en la lista
+  */
+  const carrito = (localStorage.getItem('carrito')) || [];
+  let yaEsta = false;
 
-  // Crea un elemento de botón para el botón de eliminar
-  const botonEliminar = document.createElement('button');
-  botonEliminar.textContent = 'Eliminar';
-  botonEliminar.classList.add('eliminar-item');
-
-  botonEliminar.addEventListener('click', function() {
-    this.parentElement.remove(); // Elimina el elemento de lista al hacer clic en el botón de eliminar
-    precioProducto *= -1;
-    actualizarTotal(precioProducto)
+  carrito.forEach(item => {
+      console.log("Revisando");
+      if(nombreProducto.equals(item.nombre)){
+        yaEsta = true;
+        console.log("Ya esta");
+      }
   });
 
-  const precioFormateado = precioProducto.toLocaleString('es-CO', {
-    style: 'currency',
-    currency: 'COP'
-  });
+  
+  if(!yaEsta){
+    // Crea un nuevo elemento de lista
+    const nuevoElementoLista = document.createElement('li');
+    nuevoElementoLista.classList.add('item-lista');
 
-  // Agrega el nombre del producto, el precio y el botón de eliminar al nuevo elemento de lista
-  nuevoElementoLista.textContent = nombreProducto + " - " + precioFormateado;
-  nuevoElementoLista.appendChild(botonEliminar);
+    // Crea un elemento de botón para el botón de eliminar
+    const botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+    botonEliminar.classList.add('eliminar-item');
 
-  // Agrega el nuevo elemento a la lista en el otro HTML
-  const listaEnOtroHTML = document.getElementById('carrito_list');
-  listaEnOtroHTML.appendChild(nuevoElementoLista);
+    botonEliminar.addEventListener('click', function() {
+      this.parentElement.remove(); // Elimina el elemento de lista al hacer clic en el botón de eliminar
+      precioProducto *= -1;
+      actualizarTotal(precioProducto)
+    });
+
+    const precioFormateado = precioProducto.toLocaleString('es-CO', {
+      style: 'currency',
+      currency: 'COP'
+    });
+
+    // Agrega el nombre del producto, el precio y el botón de eliminar al nuevo elemento de lista
+    nuevoElementoLista.textContent = nombreProducto + " - " + precioFormateado;
+    nuevoElementoLista.appendChild(botonEliminar);
+
+    // Agrega el nuevo elemento a la lista en el otro HTML
+    const listaEnOtroHTML = document.getElementById('carrito_list');
+    listaEnOtroHTML.appendChild(nuevoElementoLista);
+  }
+  
 }
 
 
@@ -194,19 +216,21 @@ function actualizarTotal(precioProducto) {
     --------------  
 */
 // Función para agregar un elemento al carrito
-function agregarAlCarrito(nombre, precio) {
+/*function agregarAlCarrito(nombre, precio) {
   const item = { nombre: nombre, precio: precio };
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  console.log("Agregar al");
   carrito.push(item);
   localStorage.setItem('carrito', JSON.stringify(carrito));
   alert(`${nombre} ha sido agregado al carrito.`);
-}
+}*/
 
 function cargarCarrito() {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   const carritoList = document.getElementById('carrito_list');
   carritoList.innerHTML = '';
-
+  console.log("cargarCarrito: ");
+  console.log(carrito);
   carrito.forEach(item => {
       const li = document.createElement('li');
       li.textContent = `${item.nombre} - $${item.precio.toFixed(2)}`;

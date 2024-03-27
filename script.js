@@ -203,6 +203,11 @@ function agregarProductoALista(nombreProducto, precioProducto) {
     const listaEnOtroHTML = document.getElementById('carritoList');
     listaEnOtroHTML.appendChild(nuevoElementoLista);*/
   }
+  else{
+    let idStr = "cantidad" + quitarEspacios(nombreProducto);
+    let cantidadElemento = document.getElementById(idStr);
+    cantidadElemento.innerHTML = listaJSON[nombreProducto].Cantidad;
+  }
   console.log(listaJSON);
   
 }

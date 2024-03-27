@@ -172,20 +172,33 @@ function agregarProductoALista(nombreProducto, precioProducto) {
       currency: 'COP'
     });
 
-    // Agrega el nombre del producto, el precio y el botón de eliminar al nuevo elemento de lista
+    listaJSON[nombreProducto] = {
+      "Precio": precioProducto,
+      "Cantidad": 1
+    }; 
+
+    carritoList.innerHTML +=`
+      <li className="item-lista" id="carrito${nombreProducto }">
+        <p>${nombreProducto }</p>
+        <div class="cantidadItem">
+            <button class="btnMasItem" id="btnMasItem${nombreProducto}">Mas</button>
+            <p class="cantidadItem" id="cantidadItem${nombreProducto}> ${listaJSON[nombreProducto].Cantidad}</p>
+            <button class="btnMenosItem" id="btnMenosItem${nombreProducto} onclick="menosItem(${nombreProducto})">Menos</button>
+        </div>
+      </li>
+    `;
+
+    console.log(botonEliminar); 
+    /* Agrega el nombre del producto, el precio y el botón de eliminar al nuevo elemento de lista
     nuevoElementoLista.textContent = nombreProducto + " - " + precioFormateado;
     nuevoElementoLista.appendChild(botonEliminar);
 
     // Agrega el nuevo elemento a la lista en el otro HTML
-    const listaEnOtroHTML = document.getElementById('carrito_list');
-    listaEnOtroHTML.appendChild(nuevoElementoLista);
+    const listaEnOtroHTML = document.getElementById('carritoList');
+    listaEnOtroHTML.appendChild(nuevoElementoLista);*/
+  }
+  else{
 
-    listaJSON[nombreProducto] = {
-      "Precio": precioProducto,
-      "Cantidad": 1
-    };
-
-    
   }
   console.log(listaJSON);
   
@@ -238,7 +251,7 @@ function actualizarTotal(precioProducto) {
 
 function cargarCarrito() {
   const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-  const carritoList = document.getElementById('carrito_list');
+  const carritoList = document.getElementById('carritoList');
   carritoList.innerHTML = '';
   console.log("cargarCarrito: ");
   console.log(carrito);
@@ -279,7 +292,7 @@ document.getElementById('limpiarCarrito').addEventListener('click', limpiarCarri
 
 document.querySelector('.botonComprar').addEventListener('click', function() {
   // Obtiene la lista de productos del carrito
-  const listaProductos = document.querySelectorAll('#carrito_list li');
+  const listaProductos = document.querySelectorAll('#carritoList li');
   console.log(listaProductos);
 
   // Filtra los elementos que no deseas incluir en la lista de productos

@@ -1,3 +1,7 @@
+function quitarEspacios(string) {
+  return string.replace(/\s/g, '');
+}
+
 var listaJSON = {};	
 
 /*
@@ -177,13 +181,15 @@ function agregarProductoALista(nombreProducto, precioProducto) {
       "Cantidad": 1
     }; 
 
+    let idItem = quitarEspacios(nombreProducto);
+
     carritoList.innerHTML +=`
-      <li className="item-lista" id="carrito${nombreProducto }">
+      <li class="item-lista" id="carrito${idItem}">
         <p>${nombreProducto }</p>
         <div class="cantidadItem">
-            <button class="btnMasItem" id="btnMasItem${nombreProducto}">Mas</button>
-            <p class="cantidadItem" id="cantidadItem${nombreProducto}> ${listaJSON[nombreProducto].Cantidad}</p>
-            <button class="btnMenosItem" id="btnMenosItem${nombreProducto} onclick="menosItem(${nombreProducto})">Menos</button>
+            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(nombreProducto)}')">+</button>
+            <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[nombreProducto].Cantidad}</p>
+            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(idItem)}', '${String(nombreProducto)}')">-</button>
         </div>
       </li>
     `;
@@ -197,12 +203,41 @@ function agregarProductoALista(nombreProducto, precioProducto) {
     const listaEnOtroHTML = document.getElementById('carritoList');
     listaEnOtroHTML.appendChild(nuevoElementoLista);*/
   }
-  else{
-
-  }
   console.log(listaJSON);
   
 }
+
+function masItem(idItem, nombreProducto) {
+  listaJSON[nombreProducto].Cantidad++;
+  actualizarTotal(listaJSON[nombreProducto].Precio)
+
+  let idStr = "cantidad" + idItem;
+  let cantidadElemento = document.getElementById(idStr);
+  cantidadElemento.innerHTML = listaJSON[nombreProducto].Cantidad;
+}
+
+function menosItem(idItem, nombreProducto) {
+  let precio = listaJSON[nombreProducto].Precio * -1;
+
+  if (listaJSON[nombreProducto].Cantidad > 1) {
+    listaJSON[nombreProducto].Cantidad--;
+    
+    let idStr = "cantidad" + idItem;
+    let cantidadElemento = document.getElementById(idStr);
+    cantidadElemento.innerHTML = listaJSON[nombreProducto].Cantidad;
+  } else {
+    // Obtener el elemento <li> que se desea eliminar
+    let liElemento = document.getElementById("carrito" + idItem);
+    // Eliminar el elemento <li>
+    liElemento.remove();
+    // Eliminar el producto del objeto JSON
+    delete listaJSON[nombreProducto];
+  }
+
+  actualizarTotal(precio);
+  console.log(listaJSON);
+}
+
 
 
 // Variable para almacenar el precio total

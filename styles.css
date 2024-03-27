@@ -172,6 +172,11 @@
     flex-wrap: wrap;
     align-items: center;
 }
+
+.cantidadItem{
+    display: flex;
+    gap: 10px;
+}
 /*
     --------------
     Carrito Final

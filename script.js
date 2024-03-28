@@ -2,6 +2,8 @@ function quitarEspacios(string) {
   return string.replace(/\s/g, '');
 }
 var listaJSON = {};	
+let countJSON = 0;
+
 /*
     -------------------
     Landing Page Inicio
@@ -213,16 +215,18 @@ function agregarProductoALista(nombreProducto, precioProducto) {
   
   for (var clave in listaJSON) {
     if (listaJSON.hasOwnProperty(clave)) {
-      if (clave === nombreProducto) {
+      if (listaJSON[clave].Nombre === nombreProducto) {
         yaEsta = true;
         listaJSON[clave].Cantidad++;
         break; // Termina el bucle una vez que se encuentra el objeto
       }
     }
   }
-
   
-  if(!yaEsta){
+  let idJSON = Object.keys(listaJSON).length - 1;
+  
+  if(yaEsta === false){
+    idJSON++;
     // Crea un nuevo elemento de lista
     const nuevoElementoLista = document.createElement('li');
     nuevoElementoLista.classList.add('item-lista');
@@ -243,10 +247,16 @@ function agregarProductoALista(nombreProducto, precioProducto) {
       currency: 'COP'
     });
 
+    /*
     listaJSON[nombreProducto] = {
       "Precio": precioProducto,
       "Cantidad": 1
-    }; 
+    };*/
+    listaJSON[idJSON] = {
+      "Nombre": nombreProducto,
+      "Precio": precioProducto,
+      "Cantidad": 1
+    };
 
     let idItem = quitarEspacios(nombreProducto);
 
@@ -254,14 +264,13 @@ function agregarProductoALista(nombreProducto, precioProducto) {
       <li class="item-lista" id="carrito${idItem}">
         <p>${nombreProducto }</p>
         <div class="cantidadItem">
-            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(nombreProducto)}')">+</button>
-            <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[nombreProducto].Cantidad}</p>
-            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(idItem)}', '${String(nombreProducto)}')">-</button>
+            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
+            <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[idJSON].Cantidad}</p>
+            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(idItem)}', '${String(idJSON)}')">-</button>
         </div>
       </li>
     `;
 
-    console.log(botonEliminar); 
     /* Agrega el nombre del producto, el precio y el botón de eliminar al nuevo elemento de lista
     nuevoElementoLista.textContent = nombreProducto + " - " + precioFormateado;
     nuevoElementoLista.appendChild(botonEliminar);
@@ -270,17 +279,24 @@ function agregarProductoALista(nombreProducto, precioProducto) {
     const listaEnOtroHTML = document.getElementById('carritoList');
     listaEnOtroHTML.appendChild(nuevoElementoLista);*/
   }
+  else{
+    let idStr = "cantidad" + quitarEspacios(nombreProducto);
+    let cantidadElemento = document.getElementById(idStr);
+
+    console.log(idJSON);
+    cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
+  }
   console.log(listaJSON);
   
 }
 
-function masItem(idItem, nombreProducto) {
-  listaJSON[nombreProducto].Cantidad++;
-  actualizarTotal(listaJSON[nombreProducto].Precio)
+function masItem(idItem, idJSON) {
+  listaJSON[idJSON].Cantidad++;
+  actualizarTotal(listaJSON[idJSON].Precio)
 
   let idStr = "cantidad" + idItem;
   let cantidadElemento = document.getElementById(idStr);
-  cantidadElemento.innerHTML = listaJSON[nombreProducto].Cantidad;
+  cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
 }
 
 function menosItem(idItem, nombreProducto) {

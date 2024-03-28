@@ -1,17 +1,24 @@
 function quitarEspacios(string) {
   return string.replace(/\s/g, '');
 }
-
 var listaJSON = {};	
-
 /*
     -------------------
     Landing Page Inicio
     -------------------
 */
-async function cargarMenu(){
+
+// ESTABLECIDO EL LOADER
+function mostrarLoading() {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'block'; 
+  }
   
-}
+  function ocultarLoading() {
+    const loader = document.getElementById('loader');
+    loader.style.display = 'none';
+  }
+
 function readMorePresentacion() {
   var dots = document.getElementById("dotsReadMorePresentacion");
   var moreText = document.getElementById("moreTextPresentacion");
@@ -29,9 +36,6 @@ function readMorePresentacion() {
         hamburguesaImg.setAttribute("style", "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;");
         malteadaImg.setAttribute("style", "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;");
 
-
-
-
   } else {
       dots.style.display = "none";
       btnText.innerHTML = "Read less";
@@ -48,9 +52,7 @@ function readMorePresentacion() {
       malteadaImg.style.maxWidth = "225px"; 
   }
 }
-
-
-
+/*
 function ocultarCategoria(categoriaId) {
   var categoria = document.getElementById(categoriaId);
   // Ocultar la categoría al cargar la página
@@ -62,6 +64,7 @@ ocultarCategoria('listaItemsEntrada');
 ocultarCategoria('listaItemsPlatosPrincipales');
 ocultarCategoria('listaItemsBebidas');
 ocultarCategoria('listaItemsPostres');
+
 
 // Función para mostrar u ocultar los elementos de una categoría
 function toggleCategoria(categoriaId) {
@@ -76,13 +79,11 @@ function toggleCategoria(categoriaId) {
   }
 }
 
+
+
 // Agregar un evento de clic a cada botón de categoría
 document.querySelector('#entradas .mostrarCategoria').addEventListener('click', function() {
   toggleCategoria('listaItemsEntrada');
-});
-
-document.querySelector('#platosPrincipales .mostrarCategoria').addEventListener('click', function() {
-  toggleCategoria('listaItemsPlatosPrincipales');
 });
 
 document.querySelector('#bebidas .mostrarCategoria').addEventListener('click', function() {
@@ -92,6 +93,72 @@ document.querySelector('#bebidas .mostrarCategoria').addEventListener('click', f
 document.querySelector('#postres .mostrarCategoria').addEventListener('click', function() {
   toggleCategoria('listaItemsPostres');
 });
+
+*/
+
+//FUNCIÓN PARA CARGAR MENÚ
+
+document.addEventListener("DOMContentLoaded", () => {
+  const listaItemsPrincipales = document.getElementById("listaItemsPrincipales");
+  const listaItemsEntrada = document.getElementById('listaItemsEntrada');
+  const listaItemsBebidas = document.getElementById('listaItemsBebidas');
+  const listaItemsPostres = document.getElementById('listaItemsPostres');
+  const InfoEntradas = document.querySelector("#InfoEntradas");
+  const InfoPrincipales = document.querySelector("#InfoPrincipales");
+  const InfoBebidas = document.querySelector("#InfoBebidas");
+  const InfoPostres = document.querySelector("#InfoPostres");
+  const infoPlato = document.querySelector(".InfoPlato");
+
+  // Función ASINCRONA para cargar y mostrar los platos según la categoría
+  async function mostrarPlatosPorCategoria(categoria) {
+    try {
+        const response = await fetch(
+            'https://script.google.com/macros/s/AKfycbz837EfQwrT9v7tNwuQR-NA1jztv5-_W9Rk4F7WcyxwL_S5IAyVqkmZT9imGFchAsQ2/exec'
+        );
+        if (response.ok) {
+            const data = await response.json();
+            const platosCategoria = data.data.filter(plato => plato.Categoria === categoria); //se filtran por categorias :)
+            // Mostrar info de los platos de la categoría
+            platosCategoria.forEach(plato => {
+                infoPlato.innerHTML += `   
+                <h3 class="id">${plato.ID ?? ""}</h3>
+                <p class="nombre">${plato.Nombre ?? ""}</p>  
+                <img id="imagen" src="${plato.Imagen ?? ""}"/>
+                <h3 class="descripcion">${plato.Descripcion ?? ""}</h3>
+                <p class="categoria">${plato.Categoria ?? ""}</p>  
+                `;
+            });
+        } else {
+            throw new Error("Error en la solicitud: " + response.status);
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Ocurrió un error, realiza la acción nuevamente");
+    }
+  }
+
+    // Llamadas a la función para cargar información en cada divv
+    listaItemsPrincipales.addEventListener("click", () => {
+      mostrarPlatosPorCategoria("platosPrincipales");
+    });
+  
+    listaItemsBebidas.addEventListener("click", () => {
+      mostrarPlatosPorCategoria("Bebidas");
+    });
+  
+    listaItemsPostres.addEventListener("click", () => {
+      mostrarPlatosPorCategoria("Postres");
+    });
+  
+    listaItemsPostres.addEventListener("click", () => {
+      mostrarPlatosPorCategoria("Entradas");
+    });
+  
+
+
+
+  });
+
 
 /*
   Precios

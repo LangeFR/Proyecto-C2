@@ -90,8 +90,18 @@
             </div>
             <div class="pago">
                 <div class="innerPago">
-                    <img src="metodosdepago.png" class="imagenpago">
-                    <button class="botonComprar">Comprar</button>
+                    <form action="pagina.html" method="get">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required/>
+                        <br>
+                        <label for="numero">Número</label> <!-- Corregido el valor del atributo "for" -->
+                        <input type="number" id="numero" name="numero" placeholder="Escribe tu número" required/> <!-- Corregido el valor del atributo "id" -->
+                        <br>
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" placeholder="Escribe tu correo    " required/>
+                        <br>
+                        <input value="Enviar" type="submit" name="enviar" class="botonComprar"/>
+                    </form>
                 </div>
             </div>
         </div>

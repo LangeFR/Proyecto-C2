@@ -3,26 +3,36 @@
     Navbar inicio
     -------------
 */
-#moreTextPresentacion {display: none;}
+#moreTextPresentacion {
+    display: none;
+}
+
 /* Estilos para la barra de navegación */
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Añadido para centrar el contenido horizontalmente */
-    background-color: #fff; /* Fondo blanco */
-    padding: 0px; /* Espaciado interno */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    justify-content: space-between;
+    /* Añadido para centrar el contenido horizontalmente */
+    background-color: #fff;
+    /* Fondo blanco */
+    padding: 0px;
+    /* Espaciado interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
 }
 
 .nav-logo {
-    color: #ffd400; /* Color dorado */
-    text-decoration: none; /* Quitamos subrayado del enlace */
+    color: #ffd400;
+    /* Color dorado */
+    text-decoration: none;
+    /* Quitamos subrayado del enlace */
 }
 
-.navBar{
+.navBar {
     display: flex;
     flex-direction: row;
 }
+
 .links {
     display: flex;
     flex-grow: 1;
@@ -30,24 +40,27 @@
     flex-basis: 0;
     text-decoration: none;
     color: #333;
-    flex-grow: 1; 
-    align-items: center; 
-    margin-right: auto; 
+    flex-grow: 1;
+    align-items: center;
+    margin-right: auto;
 }
 
 .links ul {
-    display: flex; /* Asegura que los elementos de la lista se muestren en línea */
+    display: flex;
+    /* Asegura que los elementos de la lista se muestren en línea */
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 .links ul li {
-    margin-right: 20px; /* Espaciado entre los elementos de la lista */
+    margin-right: 20px;
+    /* Espaciado entre los elementos de la lista */
 }
 
 .links ul li:last-child {
-    margin-right: 0; /* Elimina el margen derecho del último elemento de la lista */
+    margin-right: 0;
+    /* Elimina el margen derecho del último elemento de la lista */
 }
 
 .links ul li a {
@@ -56,6 +69,7 @@
     font-size: 1.1em;
     font-weight: bold;
 }
+
 /*
     ------------
     Navbar Final
@@ -69,7 +83,7 @@
     Carrito Inicio
     --------------
 */
-.resumenPago{
+.resumenPago {
     max-width: 400px;
 
 }
@@ -93,6 +107,7 @@
     border-radius: 10px;
     padding: 20px;
 }
+
 .carrito {
     border-radius: 10px;
     padding: 20px;
@@ -104,7 +119,7 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    color:white;
+    color: white;
 }
 
 .resumen,
@@ -114,35 +129,36 @@
     border-radius: 10px;
     padding: 20px;
     margin-right: 20px;
-    color:rgb(255, 162, 0);
+    color: rgb(255, 162, 0);
 }
+
 .itemsCarrito,
 .resumenPago,
-.pago{
+.pago {
     min-height: 205px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.imagenpago{
+.imagenpago {
     width: 350px;
 }
 
-#total{
+#total {
     background-color: white;
 }
 
-.botonComprar{
-    padding: 10px 20px; 
-    background-color: rgb(255, 162, 0); 
-    color: black; 
-    border: black; 
-    border-radius: 5px; 
+.botonComprar {
+    padding: 10px 20px;
+    background-color: rgb(255, 162, 0);
+    color: black;
+    border: black;
+    border-radius: 5px;
 
 }
 
-.carritoCompras{
+.carritoCompras {
     gap: 15px;
     display: flex;
     flex-direction: row;
@@ -153,18 +169,18 @@
     margin-top: 10px;
 }
 
-#totalPrecio{
+#totalPrecio {
     resize: none;
     height: 1rem;
     text-align: right;
 }
 
-#totalTituloValor{
+#totalTituloValor {
     display: flex;
 
 }
 
-.item-lista{
+.item-lista {
     display: flex;
     flex-direction: row;
     gap: 5px;
@@ -173,10 +189,11 @@
     align-items: center;
 }
 
-.cantidadItem{
+.cantidadItem {
     display: flex;
     gap: 10px;
 }
+
 /*
     --------------
     Carrito Final
@@ -188,7 +205,7 @@
     Landing Page Inicio
     -------------------
 */
-.añadir-carrito{
+.añadir-carrito {
     padding: 10px 20px;
     background-color: #ff9900;
     color: #fff;
@@ -197,17 +214,20 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-*button :hover{
+
+*button :hover {
     cursor: pointer;
 }
-html, body{
+
+html,
+body {
     max-height: 100vw;
     margin: 0;
 }
 
 
 
-.menu{
+.menu {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -216,12 +236,13 @@ html, body{
 
 /*Imagenes*/
 
-.imagenesPlatos{
+.imagenesPlatos {
     max-height: 108px;
     aspect-ratio: 144 / 108;
     object-fit: cover;
 }
-.imagenesDescripcion{
+
+.imagenesDescripcion {
     margin-bottom: 5px;
     margin-top: 5px;
     border-radius: 20px 20px 20px 20px;
@@ -229,41 +250,50 @@ html, body{
     aspect-ratio: 150 / 100;
     object-fit: cover;
 }
-#hamburguesaDescripcion{
+
+#hamburguesaDescripcion {
     margin-left: 5px;
 }
-#malteadaDescripcion{
+
+#malteadaDescripcion {
     margin-top: 5px;
     margin-right: 5px;
 }
 
 
 
-.presentacion{
+.presentacion {
     align-items: center;
     display: flex;
     border-radius: 5px 5px 5px 5px;
     font-family: sans-serif;
-    color:#000;
+    color: #000;
     background-color: #ffa600;
 }
-#divPresentacion{
+
+#divPresentacion {
     display: block;
 }
-.decripcionPresentacion{
+
+.decripcionPresentacion {
     padding: 10px;
     margin: 0;
 
     font-family: 'Arial', sans-serif;
-    font-size: 16px; /* Tamaño de fuente */
-    line-height: 1.5; /* Altura de línea para una mejor legibilidad */
-    color: #333; /* Color del texto */
+    font-size: 16px;
+    /* Tamaño de fuente */
+    line-height: 1.5;
+    /* Altura de línea para una mejor legibilidad */
+    color: #333;
+    /* Color del texto */
 }
-body{
+
+body {
     background-color: white;
 
 }
-#btnReadMorePresentacion{
+
+#btnReadMorePresentacion {
     margin: 5px;
     border: 0;
     background-color: transparent;
@@ -272,74 +302,84 @@ body{
     opacity: 0.8;
 }
 
-#listaItemsEntrada li{
-    display: flex;  
-}
-#listaItemsPlatosPrincipales li{
-    display: flex;  
-}
-#listaItemsBebidas li{
-    display: flex;  
-}
-#listaItemsPostres li{
-    display: flex;  
+#listaItemsEntrada li {
+    display: flex;
 }
 
-.mostrarCategoria{
+#listaItemsPlatosPrincipales li {
+    display: flex;
+}
+
+#listaItemsBebidas li {
+    display: flex;
+}
+
+#listaItemsPostres li {
+    display: flex;
+}
+
+.mostrarCategoria {
     border: 0;
     background-color: transparent;
     color: #000;
     margin-left: 2px;
-    
+
 }
 
 .mostrarCategoria {
-    font-family: 'Hanley Pro Sans'; 
-    font-size: 24px; /* Tamaño de fuente */
-    text-transform: uppercase; /* Convertir texto a mayúsculas */
-    letter-spacing: 1px; /* Espaciado entre letras */
+    font-family: 'Hanley Pro Sans';
+    font-size: 24px;
+    /* Tamaño de fuente */
+    text-transform: uppercase;
+    /* Convertir texto a mayúsculas */
+    letter-spacing: 1px;
+    /* Espaciado entre letras */
 }
-#entradas{
+
+#entradas {
     justify-content: center;
     font-size: 1rem;
     min-height: 40px;
     margin-bottom: px;
-    background-color:#A8D8EA;
-    border-radius: 5px 5px 5px 5px;
-}
-#platosPrincipales{
-    min-height: 40px;
-    margin-bottom: 0px;
-    background-color:#A8D8EA;
-    border-radius: 5px 5px 5px 5px;
-}
-#bebidas{
-    min-height: 40px;
-    margin-bottom: 0px;
-    background-color:#A8D8EA;
-    border-radius: 5px 5px 5px 5px;
-}
-#postres{
-    min-height: 40px;
-    margin-bottom: 0px;
-    background-color:#A8D8EA;
+    background-color: #A8D8EA;
     border-radius: 5px 5px 5px 5px;
 }
 
-.menu ul li{
-    padding: 10px; 
-  }
-  
-  ul li:last-child {
+#platosPrincipales {
+    min-height: 40px;
+    margin-bottom: 0px;
+    background-color: #A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#bebidas {
+    min-height: 40px;
+    margin-bottom: 0px;
+    background-color: #A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#postres {
+    min-height: 40px;
+    margin-bottom: 0px;
+    background-color: #A8D8EA;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.menu ul li {
+    padding: 10px;
+}
+
+ul li:last-child {
     padding-bottom: 10px;
-  }
+}
 
 
-h3{
+h3 {
     margin: 3px;
 }
 
-.mostrarDescripcionItem{
+.mostrarDescripcionItem {
     border: none;
     background-color: transparent;
     color: #000;
@@ -347,19 +387,21 @@ h3{
     font-weight: bold;
 }
 
-ul, ol {
+ul,
+ol {
     list-style-type: none;
 }
 
 .descCarrito {
     margin-left: 20px;
-  }
-  
-.mostrar {
-    display: block; /* Muestra la descripción y el botón cuando la clase "mostrar" está presente */
- }
+}
 
- #footer{
+.mostrar {
+    display: block;
+    /* Muestra la descripción y el botón cuando la clase "mostrar" está presente */
+}
+
+#footer {
     width: 100%;
     background-color: #FCBAD3;
     color: #000;
@@ -367,17 +409,18 @@ ul, ol {
     margin: 0;
     margin-top: 10px;
     justify-content: center
- }
+}
 
 #footer div {
     max-width: 600px;
-    margin: auto; /* Centra el contenido horizontalmente */
+    margin: auto;
+    /* Centra el contenido horizontalmente */
 }
- 
+
 .somos {
     padding: 60px 0;
     text-align: center;
-    background-color: #BCE2E8; 
+    background-color: #BCE2E8;
 }
 
 .container {
@@ -523,28 +566,60 @@ ul, ol {
     margin-top: -25px;
     margin-left: -25px;
     display: none;
-  }
-  
-  /* Animación de rotación */
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Opcional: cambiar el color del loader */
-  .loader {
+}
+
+/* Animación de rotación */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
     border-top-color: #f0c419;
     border-right-color: #f0c419;
-  }
+}
 
-  .categorias {
-    display: flex; /* Hace que los elementos dentro de la clase 'categorias' se muestren en una fila */
-  }
-  
-  .pCategoria {
-    margin-right: 10px; /* Añade un espacio entre los botones */
-  }
-  
+.categorias {
+    display: flex;
+}
+
+.pCategoria {
+    margin-right: 10px;
+}
+
+.InfoPlato {
+    background-color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.InfoPlato h3 {
+    font-size: 20px;
+    color: #f6ac00;
+    margin-bottom: 10px;
+}
+
+.InfoPlato p {
+    font-size: 16px;
+    color: #f6ac00;
+    margin-bottom: 10px;
+}
+
+.InfoPlato img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
 /*
     ------------------
     Landing Page Final

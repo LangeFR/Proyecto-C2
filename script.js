@@ -15,11 +15,12 @@ function mostrarLoading() {
     const loader = document.getElementById('loader');
     loader.style.display = 'block'; 
   }
-  
+
   function ocultarLoading() {
     const loader = document.getElementById('loader');
-    loader.style.display = 'none';
-  }
+      loader.style.display = 'none';
+    }
+
 
 function readMorePresentacion() {
   var dots = document.getElementById("dotsReadMorePresentacion");
@@ -54,49 +55,6 @@ function readMorePresentacion() {
       malteadaImg.style.maxWidth = "225px"; 
   }
 }
-/*
-function ocultarCategoria(categoriaId) {
-  var categoria = document.getElementById(categoriaId);
-  // Ocultar la categoría al cargar la página
-  categoria.style.display = 'none';
-}
-
-// Ocultar todos los elementos de las categorías al cargar la página
-ocultarCategoria('listaItemsEntrada');
-ocultarCategoria('listaItemsPlatosPrincipales');
-ocultarCategoria('listaItemsBebidas');
-ocultarCategoria('listaItemsPostres');
-
-
-// Función para mostrar u ocultar los elementos de una categoría
-function toggleCategoria(categoriaId) {
-  var categoria = document.getElementById(categoriaId);
-  // Verificar si la categoría está visible o no
-  if (categoria.style.display === 'none') {
-      // Si está oculta, mostrarla
-      categoria.style.display = 'initial';
-  } else {
-      // Si está visible, ocultarla
-      categoria.style.display = 'none';
-  }
-}
-
-
-
-// Agregar un evento de clic a cada botón de categoría
-document.querySelector('#entradas .mostrarCategoria').addEventListener('click', function() {
-  toggleCategoria('listaItemsEntrada');
-});
-
-document.querySelector('#bebidas .mostrarCategoria').addEventListener('click', function() {
-  toggleCategoria('listaItemsBebidas');
-});
-
-document.querySelector('#postres .mostrarCategoria').addEventListener('click', function() {
-  toggleCategoria('listaItemsPostres');
-});
-
-*/
 
 //FUNCIÓN PARA CARGAR MENÚ
 
@@ -114,7 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función ASINCRONA para cargar y mostrar los platos según la categoría
   async function mostrarPlatosPorCategoria(categoria) {
     try {
-      mostrarLoading();
+      mostrarLoading(categoria);
+      const loading = document.getElementById('loader');
+      infoPlato.innerHTML = "";
         const response = await fetch(
             'https://script.google.com/macros/s/AKfycbz837EfQwrT9v7tNwuQR-NA1jztv5-_W9Rk4F7WcyxwL_S5IAyVqkmZT9imGFchAsQ2/exec'
         );
@@ -123,12 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const platosCategoria = data.data.filter(plato => plato.Categoria === categoria); //se filtran por categorias :)
             // Mostrar info de los platos de la categoría
             platosCategoria.forEach(plato => {
-                infoPlato.innerHTML += `   
-                <h3 class="id">${plato.ID ?? ""}</h3>
-                <p class="nombre">${plato.Nombre ?? ""}</p>  
+                infoPlato.innerHTML += ` 
+                <hr>
+                <h3 class="nombre">${plato.Nombre ?? ""}</p>
+                <hr>
+                <p class="id">ID:${plato.ID ?? ""}</h3>
                 <img id="imagen" src="${plato.Imagen ?? ""}"/>
-                <h3 class="descripcion">${plato.Descripcion ?? ""}</h3>
-                <p class="categoria">${plato.Categoria ?? ""}</p>  
+                <p class="descripcion">${plato.Descripcion ?? ""}</h3>
                 `;
             });
             ocultarLoading();
@@ -138,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
         console.error(error);
         alert("Ocurrió un error, realiza la acción nuevamente");
+        ocultarLoading();
     }
   }
 
@@ -154,11 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
       mostrarPlatosPorCategoria("Postres");
     });
   
-    listaItemsPostres.addEventListener("click", () => {
+    listaItemsEntrada.addEventListener("click", () => {
       mostrarPlatosPorCategoria("Entradas");
     });
   
-
 
 
   });
@@ -402,8 +363,6 @@ function limpiarCarrito() {
   totalTextarea.value = 0;
 }
 
-
-
 // Event listener para cargar el carrito cuando la página se cargue
 window.addEventListener('load', cargarCarrito);
 
@@ -443,4 +402,48 @@ document.querySelector('.botonComprar').addEventListener('click', function() {
     --------------
     Carrito Final
     --------------
+*/
+
+/*
+function ocultarCategoria(categoriaId) {
+  var categoria = document.getElementById(categoriaId);
+  // Ocultar la categoría al cargar la página
+  categoria.style.display = 'none';
+}
+
+// Ocultar todos los elementos de las categorías al cargar la página
+ocultarCategoria('listaItemsEntrada');
+ocultarCategoria('listaItemsPlatosPrincipales');
+ocultarCategoria('listaItemsBebidas');
+ocultarCategoria('listaItemsPostres');
+
+
+// Función para mostrar u ocultar los elementos de una categoría
+function toggleCategoria(categoriaId) {
+  var categoria = document.getElementById(categoriaId);
+  // Verificar si la categoría está visible o no
+  if (categoria.style.display === 'none') {
+      // Si está oculta, mostrarla
+      categoria.style.display = 'initial';
+  } else {
+      // Si está visible, ocultarla
+      categoria.style.display = 'none';
+  }
+}
+
+
+
+// Agregar un evento de clic a cada botón de categoría
+document.querySelector('#entradas .mostrarCategoria').addEventListener('click', function() {
+  toggleCategoria('listaItemsEntrada');
+});
+
+document.querySelector('#bebidas .mostrarCategoria').addEventListener('click', function() {
+  toggleCategoria('listaItemsBebidas');
+});
+
+document.querySelector('#postres .mostrarCategoria').addEventListener('click', function() {
+  toggleCategoria('listaItemsPostres');
+});
+
 */

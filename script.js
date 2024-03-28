@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
                         <p class="id">ID:${plato.ID ?? ""}</p>
                         <p class="precio">$${plato.Precio ?? "COP"}</p>
-                        <button class="añadir-carrito">Agregar al carrito</button>
+                        <button class="añadir-carrito" onClick="añadirAlCarrito(${plato.ID})">Agregar al carrito</button>
                       </div>
                   </div>
                   <hr>
@@ -171,23 +171,42 @@ elementosPrecio.forEach(function(elemento) {
 
 
 ///----------------------
-// Obtén todos los botones "Agregar al carrito"
-const botonesAgregar = document.querySelectorAll('.añadir-carrito');
 
+async function añadirAlCarrito(idProducto) {
+  let nombreProducto;
+  let precioProducto;
+  
+  try {
+    mostrarLoading();
+    const loading = document.getElementById('loader');
 
-// Itera sobre cada botón y agrega un event listener
-botonesAgregar.forEach(boton => {
-  boton.addEventListener('click', () => {
-    // Obtén el nombre del producto del input oculto
-    const nombreProducto = boton.parentElement.querySelector('.nombre-producto').value;
-    const precioProducto = parseFloat(boton.parentElement.querySelector('.precio-producto').value);
+      const response = await fetch(
+          'https://script.google.com/macros/s/AKfycby5p-1l8DxmNgke-fpOzO-JXFO-WNSpm2df2xX1IWPtyyNpol8gguSuh-MGTZDJrvey/exec'
+      );
+      if (response.ok) {
+        const dataResponse = await response.json();
+        
+        const data = dataResponse.data; // Acceder al arreglo de objetos dentro de la propiedad "data"
+        console.log(data);
+      nombreProducto = data[idProducto].Nombre;
+      precioProducto = parseFloat(data[idProducto].Precio);
+
+          ocultarLoading();
+      } else {
+          throw new Error("Error en la solicitud: " + response.status);
+      }
+  } catch (error) {
+      console.error(error);
+      alert("Ocurrió un error, realiza la acción nuevamente");
+
+  }
+      
     
     // Llama a una función para agregar el nombre del producto a la lista en el otro HTML
     agregarProductoALista(nombreProducto, precioProducto);
     actualizarTotal(precioProducto)
-  });
-});
 
+}
 
 // Función para agregar el nombre del producto a la lista en el otro HTML
 function agregarProductoALista(nombreProducto, precioProducto) {

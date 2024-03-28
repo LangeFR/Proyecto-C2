@@ -90,13 +90,27 @@ document.addEventListener("DOMContentLoaded", () => {
             // Mostrar info de los platos de la categoría
             platosCategoria.forEach(plato => {
                 infoPlato.innerHTML += ` 
-                <hr>
-                <h3 class="nombre">${plato.Nombre ?? ""}</p>
-                <hr>
-                <p class="id">ID:${plato.ID ?? ""}</h3>
-                <img id="imagen" src="${plato.Imagen ?? ""}"/>
-                <p class="descripcion">${plato.Descripcion ?? ""}</h3>
+                  <div class="platoContainer"  id="infoPlatoContainer${plato.ID}">                      
+                      <img id="imagen${plato.ID}" src="${plato.Imagen ?? ""}"/>
+                      <div class"infoPlatoContainer">
+                        <h3 class="nombre">${plato.Nombre ?? ""}</p>
+                        <p class="descripcion">${plato.Descripcion ?? ""}</h3>
+                        <p class="id">ID:${plato.ID ?? ""}</h3>
+                      </div>
+                  </div>
+                  <hr>
+                    
                 `;
+
+              let tempID = "imagen" + plato.ID;
+              let imagenPlato = document.getElementById(tempID);
+
+              imagenPlato.setAttribute("style", "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;");
+
+              tempID = "infoPlatoContainer" + plato.ID;
+              let infoPlatoId = document.getElementById(tempID);
+              infoPlatoId.setAttribute("style", "display: flex; gap: 10px;");
+            
             });
             ocultarLoading();
         } else {

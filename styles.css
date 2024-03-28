@@ -689,6 +689,10 @@ button:hover {
     background-color: #ffbd4a; 
 }
 
+.carritoContainer{
+    display: flex;
+}
+
 
 /*
     ------------------

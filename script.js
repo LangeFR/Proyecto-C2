@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Función ASINCRONA para cargar y mostrar los platos según la categoría
   async function mostrarPlatosPorCategoria(categoria) {
     try {
+      mostrarLoading();
         const response = await fetch(
             'https://script.google.com/macros/s/AKfycbz837EfQwrT9v7tNwuQR-NA1jztv5-_W9Rk4F7WcyxwL_S5IAyVqkmZT9imGFchAsQ2/exec'
         );
@@ -130,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="categoria">${plato.Categoria ?? ""}</p>  
                 `;
             });
+            ocultarLoading();
         } else {
             throw new Error("Error en la solicitud: " + response.status);
         }

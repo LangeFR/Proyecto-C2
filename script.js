@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
                         <p class="id">ID:${plato.ID ?? ""}</p>
                         <p class="precio">$${plato.Precio ?? "COP"}</p>
+                        <button class="añadir-carrito">Agregar al carrito</button>
                       </div>
                   </div>
                   <hr>

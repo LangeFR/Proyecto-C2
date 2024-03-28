@@ -69,14 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const InfoPostres = document.querySelector("#InfoPostres");
   const infoPlato = document.querySelector(".InfoPlato");
 
+  if(infoPlato.innerHTML.trim() === '') {
+      const loader = document.querySelector('#loader img');
+      loader.src = 'hamburguesa_elegante.png';
+  }
+
   // Función ASINCRONA para cargar y mostrar los platos según la categoría
   async function mostrarPlatosPorCategoria(categoria) {
     try {
       mostrarLoading(categoria);
       const loading = document.getElementById('loader');
       infoPlato.innerHTML = "";
+
         const response = await fetch(
-            'https://script.google.com/macros/s/AKfycbz837EfQwrT9v7tNwuQR-NA1jztv5-_W9Rk4F7WcyxwL_S5IAyVqkmZT9imGFchAsQ2/exec'
+            'https://script.google.com/macros/s/AKfycby5p-1l8DxmNgke-fpOzO-JXFO-WNSpm2df2xX1IWPtyyNpol8gguSuh-MGTZDJrvey/exec'
         );
         if (response.ok) {
             const data = await response.json();

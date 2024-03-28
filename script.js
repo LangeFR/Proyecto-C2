@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       infoPlato.innerHTML = "";
 
         const response = await fetch(
-            'https://script.google.com/macros/s/AKfycby5p-1l8DxmNgke-fpOzO-JXFO-WNSpm2df2xX1IWPtyyNpol8gguSuh-MGTZDJrvey/exec'
+            'https://script.google.com/macros/s/AKfycbwcYGupY_ohAaj9aj6VfP4ssGKP7NLf_t8IlbJONiCXlMgw1XUwBcO96wexi3T3XuNH/exec'
         );
         if (response.ok) {
             const data = await response.json();
@@ -181,7 +181,7 @@ async function añadirAlCarrito(idProducto) {
     const loading = document.getElementById('loader');
 
       const response = await fetch(
-          'https://script.google.com/macros/s/AKfycbzEPHFvb-0zLjqRhMYGss9E_SHwBqjt5SYF13KIFRouLG1KooHUczvJ--hkS5mZsFKG/exec'
+          'https://script.google.com/macros/s/AKfycbwcYGupY_ohAaj9aj6VfP4ssGKP7NLf_t8IlbJONiCXlMgw1XUwBcO96wexi3T3XuNH/exec'
       );
       if (response.ok) {
         const dataResponse = await response.json();
@@ -441,7 +441,7 @@ document.querySelector('.botonComprar').addEventListener('click', function() {
   //FUNCION DE POST
   async function postJSON(data) {
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbzEPHFvb-0zLjqRhMYGss9E_SHwBqjt5SYF13KIFRouLG1KooHUczvJ--hkS5mZsFKG/exec", { 
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwcYGupY_ohAaj9aj6VfP4ssGKP7NLf_t8IlbJONiCXlMgw1XUwBcO96wexi3T3XuNH/exec", { 
         headers: {
           "Content-Type": "application/json",
         },
@@ -456,50 +456,68 @@ document.querySelector('.botonComprar').addEventListener('click', function() {
   }
   
   //FUNCION PARA ENVIAR AL FORMULARIO LA INFO del usaurio
-  function enviarFormulario() {
-    var nombre = document.getElementById("nombre").value;
-    var numero = document.getElementById("numero").value; 
-    var direccion = document.getElementById("direccion").value;
-  
-    // Crear un arreglo para almacenar la información de cada producto en el carrito
-    var productosPedido = [];
-  
-    // Recorrer el carrito y obtener la información de cada producto
-    for (var clave in listaJSON) {
-      if (listaJSON.hasOwnProperty(clave)) {
-        var producto = listaJSON[clave];
-        // Crear un objeto con la información del producto
-        var productoPedido = {
-          idProducto: producto.ID, 
-          precio: producto.Precio,
-          cantidad: producto.Cantidad
-        };
-        // Agregar el objeto a la lista de productos del pedido
-        productosPedido.push(productoPedido);
+  async function enviarFormulario() {
+    try {
+      var nombre = document.getElementById("nombre").value;
+      var numero = document.getElementById("numero").value; 
+      var direccion = document.getElementById("direccion").value;
+    
+      // Crear un arreglo para almacenar la información de cada producto en el carrito
+      var productosPedido = [];
+    
+      // Recorrer el carrito y obtener la información de cada producto
+      for (var clave in listaJSON) {
+        if (listaJSON.hasOwnProperty(clave)) {
+          var producto = listaJSON[clave];
+          // Crear un objeto con la información del producto
+          var productoPedido = {
+            idProducto: producto.ID, 
+            precio: producto.Precio,
+            cantidad: producto.Cantidad
+          };
+          // Agregar el objeto a la lista de productos del pedido
+          productosPedido.push(productoPedido);
+        }
       }
+    
+      // Crear un objeto con la información del formulario y la lista de productos del pedido
+      var formData = {
+        nombre: nombre,
+        numero: numero,
+        direccion: direccion,
+        productosPedido: productosPedido
+      };
+    
+      // Llamar a la función postJSON para enviar los datos
+      await postJSON(formData);
+    
+      limpiarCarrito();
+      alert("¡Compra realizada con éxito!");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
     }
-  
-    // Crear el objeto formData con la información del formulario, la lista de productos del pedido y el valor total del pedido
-    var formData = {
-      "nombre": nombre,
-      "telefono": telefono,
-      "direccion": direccion,
-      "productosPedido": productosPedido, 
-      "valorTotalPedido": precioTotal 
-    };
-  
-    // Convertir el objeto formData a JSON
-    var jsonData = JSON.stringify(formData);
-  
-    // Llamar a la función postJSON para enviar los datos
-    postJSON(jsonData);
-  
-    limpiarCarrito();
-    alert("¡Compra realizada con éxito!");
   }
   
   
-
+  async function postJSON(data) {
+    try {
+      const response = await fetch("https://example.com/profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+      console.log("Success:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  
+  
 
 
 

@@ -93,9 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="platoContainer"  id="infoPlatoContainer${plato.ID}">                      
                       <img id="imagen${plato.ID}" src="${plato.Imagen ?? ""}"/>
                       <div class"infoPlatoContainer">
-                        <h3 class="nombre">${plato.Nombre ?? ""}</p>
-                        <p class="descripcion">${plato.Descripcion ?? ""}</h3>
-                        <p class="id">ID:${plato.ID ?? ""}</h3>
+                        <h3 class="nombre">${plato.Nombre ?? ""}</h3>
+                        <p class="descripcion">${plato.Descripcion ?? ""}</p>
+                        <p class="id">ID:${plato.ID ?? ""}</p>
+                        <p class="precio">$${plato.Precio ?? "COP"}</p>
                       </div>
                   </div>
                   <hr>

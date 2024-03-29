@@ -719,3 +719,13 @@ input[type="number"] {
     Landing Page Final
     ------------------
 */
+.locker {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8); /*lets make it semi-transparent */
+    z-index: 9999; /*because you could set some z-indexes in your code before, so lets make sure that this will be over every elements in html*/
+    }

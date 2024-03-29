@@ -380,7 +380,7 @@ function cargarCarrito() {
 
 // Inicializar ScrollReveal
 
-ScrollReveal().reveal('div', {
+ScrollReveal().reveal('header, #divPresentacion, .categorias, footer', {
   delay: 300,
   duration: 500,
   distance: '20px',
@@ -390,6 +390,7 @@ ScrollReveal().reveal('div', {
   reset: true,
   scale: 0.9,
 });
+
 
 
 

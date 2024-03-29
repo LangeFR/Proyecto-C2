@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
                           <p class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</p>
                         </div>
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
-                        <p class="id">ID:${plato.ID ?? ""}</p>
+                        <p class="id">ID: ${plato.ID ?? ""}</p>
                         <button class="añadir-carrito" onClick="añadirAlCarrito(${
                           plato.ID
                         })">Agregar al carrito</button>
@@ -308,10 +308,23 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
     let idStr = "cantidad" + quitarEspacios(nombreProducto);
     let cantidadElemento = document.getElementById(idStr);
     
-    cantidadElemento.innerHTML = listaJSON[idProducto].Cantidad;
+    cantidadElemento.innerHTML = listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
+
+    actualizarPrecioCarrito(nombreProducto, idProducto);
   }
   console.log("listaJSON");
   console.log(listaJSON);
+}
+
+function actualizarPrecioCarrito(nombreProducto, idProducto){
+  let idStr = "precioCarrito" + quitarEspacios(nombreProducto);
+  let precioElemento = document.getElementById(idStr);
+
+  console.log(listaJSON);
+  console.log("idProducto: ", idProducto);
+  console.log("id en el listaJSON", encontrarKeyPorID(listaJSON, idProducto));
+  precioElemento.innerHTML = listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Precio * listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
+  formatoPrecio(idStr);
 }
 
 function masItem(idItem, idJSON) {
@@ -321,25 +334,30 @@ function masItem(idItem, idJSON) {
   let idStr = "cantidad" + idItem;
   let cantidadElemento = document.getElementById(idStr);
 
+  console.log("Boton Mas: ", listaJSON[idJSON].Cantidad);
   cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
+
+  actualizarPrecioCarrito(listaJSON[idJSON].Nombre, listaJSON[idJSON].ID);
 }
 
-function menosItem(idItem, nombreProducto) {
-  let precio = listaJSON[nombreProducto].Precio * -1;
+function menosItem(idItem, idJSON) {
+  let precio = listaJSON[idJSON].Precio * -1;
 
-  if (listaJSON[nombreProducto].Cantidad > 1) {
-    listaJSON[nombreProducto].Cantidad--;
+  if (listaJSON[idJSON].Cantidad > 1) {
+    listaJSON[idJSON].Cantidad--;
 
     let idStr = "cantidad" + idItem;
     let cantidadElemento = document.getElementById(idStr);
-    cantidadElemento.innerHTML = listaJSON[nombreProducto].Cantidad;
+    cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
+
+    actualizarPrecioCarrito(listaJSON[idJSON].Nombre, listaJSON[idJSON].ID);
   } else {
     // Obtener el elemento <li> que se desea eliminar
     let liElemento = document.getElementById("carrito" + idItem);
     // Eliminar el elemento <li>
     liElemento.remove();
     // Eliminar el producto del objeto JSON
-    delete listaJSON[nombreProducto];
+    delete listaJSON[idJSON];
   }
 
   actualizarTotal(precio);
@@ -518,4 +536,14 @@ function mostrarBloqueoPantalla() {
 
 function ocultarBloqueoPantalla() {
   document.getElementById('blockScreen').style.display = 'none';
+}
+
+function encontrarKeyPorID(json, id) {
+  for (let key in json) {
+    if (json[key].ID === id) {
+      return key; // Devuelve el key si encuentra el elemento con el ID especificado
+    }
+  }
+  console.log("encontrarKeyPorID: No se encontro el ID ", id, "  de producto en JSON ", json);
+  return null; // Devuelve null si no se encuentra ningún elemento con el ID especificado
 }

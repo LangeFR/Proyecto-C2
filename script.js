@@ -282,7 +282,6 @@ function agregarProductoALista(nombreProducto, precioProducto) {
         </div>
       </li>
     `;
-
   } else {
     let idStr = "cantidad" + quitarEspacios(nombreProducto);
     let cantidadElemento = document.getElementById(idStr);
@@ -373,6 +372,21 @@ function cargarCarrito() {
   }
 }
 
+// Inicializar ScrollReveal
+// Inicializar ScrollReveal para todos los divs
+ScrollReveal().reveal('div', {
+  delay: 300,
+  duration: 1000,
+  distance: '20px',
+  origin: 'bottom',
+  easing: 'cubic-bezier(0.5, 0, 0, 1)',
+  opacity: 0,
+  reset: true,
+  scale: 0.9,
+});
+
+
+
 // Event listener para cargar el carrito cuando la página se cargue
 window.addEventListener("load", cargarCarrito);
 
@@ -384,6 +398,7 @@ function limpiarCarrito() {
   const totalTextarea = document.getElementById("totalPrecio");
   totalTextarea.value = 0;
 }
+
 
 // Event listener para cargar el carrito cuando la página se cargue
 window.addEventListener("load", cargarCarrito);
@@ -397,59 +412,62 @@ document
 function arrayCarrito(listaProductosJSON) {
   const arrayCarrito = [];
   for (const key in listaProductosJSON) {
-      if (listaProductosJSON.hasOwnProperty(key)) {
-          const producto = listaProductosJSON[key];
-          console.log(producto);
-          arrayCarrito.push(producto);
-      }
+    if (listaProductosJSON.hasOwnProperty(key)) {
+      const producto = listaProductosJSON[key];
+      console.log(producto);
+      arrayCarrito.push(producto);
+    }
   }
   return arrayCarrito;
 }
 
-//ESTO ES PARA INTERCEPTAR Y QUE NO SE VAYA A LA WEBAPPSCRIPT. 
+//ESTO ES PARA INTERCEPTAR Y QUE NO SE VAYA A LA WEBAPPSCRIPT.
 
-document.getElementById("formulario").addEventListener("submit", function(event) {
-  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-  
-  // Obtén los valores de los campos del formulario
-  var nombre = document.getElementById("nombre").value;
-  var numero = document.getElementById("numero").value; 
-  var direccion = document.getElementById("direccion").value; 
-  
-  // Crea un objeto FormData para enviar los datos del formulario
-  var formData = new FormData();
-  formData.append("nombre", nombre);
-  formData.append("numero", numero);
-  formData.append("direccion", direccion);
-  formData.append("productosPedido", arrayCarrito(listaJSON));
-  console.log(arrayCarrito(listaJSON));
-  formData.append("total", precioTotal);
+document
+  .getElementById("formulario")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
 
-  var object = {};
-  formData.forEach((value, key) => object[key] = value);
-  var json = JSON.stringify(object);
-  
-  mostrarLoading();
-  // Realiza la solicitud POST mediante fetch
-  fetch("https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    
-    console.log("Response:", data);
-    ocultarLoading();
-    alert("¡Compra realizada con éxito!");
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
+    // Obtén los valores de los campos del formulario
+    var nombre = document.getElementById("nombre").value;
+    var numero = document.getElementById("numero").value;
+    var direccion = document.getElementById("direccion").value;
+
+    // Crea un objeto FormData para enviar los datos del formulario
+    var formData = new FormData();
+    formData.append("nombre", nombre);
+    formData.append("numero", numero);
+    formData.append("direccion", direccion);
+    formData.append("productosPedido", arrayCarrito(listaJSON));
+    console.log(arrayCarrito(listaJSON));
+    formData.append("total", precioTotal);
+
+    var object = {};
+    formData.forEach((value, key) => (object[key] = value));
+    var json = JSON.stringify(object);
+
+    mostrarLoading();
+    // Realiza la solicitud POST mediante fetch
+    fetch(
+      "https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response:", data);
+        ocultarLoading();
+        alert("¡Compra realizada con éxito!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
+      });
+
+    limpiarCarrito();
   });
-
-  limpiarCarrito();
-});
-
 
 /*
     --------------

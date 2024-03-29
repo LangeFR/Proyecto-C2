@@ -463,8 +463,6 @@ document.getElementById("formulario").addEventListener("submit", function(event)
   var numero = document.getElementById("numero").value; 
   var direccion = document.getElementById("direccion").value; 
   
-  // Realiza cualquier validación adicional aquí si es necesario
-  
   // Crea un objeto FormData para enviar los datos del formulario
   var formData = new FormData();
   formData.append("nombre", nombre);
@@ -478,7 +476,7 @@ document.getElementById("formulario").addEventListener("submit", function(event)
   })
   .then(response => response.json())
   .then(data => {
-    // Maneja la respuesta aquí si es necesario
+    
     console.log("Response:", data);
     alert("¡Compra realizada con éxito!");
   })
@@ -488,82 +486,6 @@ document.getElementById("formulario").addEventListener("submit", function(event)
   });
 });
 
-//FUNCION DE POST
-
-/*
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwkUrGUvPnrHYC8ixy_jt7Wdx3Fqn7Ks_TkM_m7zWcrjeN7S0A0h7-5zpKeMxIs7m-Z/exec'
-const form = document.forms['submit-form']
-
-form.addEventListener('submit', e => {
-  e.preventDefault()
-  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    .then(response => console.log('Success!', response))
-    .catch(error => console.error('Error!', error.message))
-})
-
-/*
-async function postJSON(data) {
-  try {
-    const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbw-iNnrzplDZHspDakHgRlLMI7CntYlhv38WVT1uRq3Je1hoY1c9zaSN8G6KhvW-8a7/exec",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: data,
-      }
-    );
-
-    const result = await response.json();
-    console.log("Success:", result);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-//FUNCION PARA ENVIAR AL FORMULARIO LA INFO del usaurio
-async function enviarFormulario() {
-  try {
-    var nombre = document.getElementById("nombre").value;
-    var numero = document.getElementById("numero").value;
-    var direccion = document.getElementById("direccion").value;
-
-    // Crear un arreglo para almacenar la información de cada producto en el carrito
-    var productosPedido = [];
-
-    // Recorrer el carrito y obtener la información de cada producto
-    for (var clave in listaJSON) {
-      if (listaJSON.hasOwnProperty(clave)) {
-        var producto = listaJSON[clave];
-        // Crear un objeto con la información del producto
-        var productoPedido = {
-          idProducto: producto.ID,
-          precio: producto.Precio,
-          cantidad: producto.Cantidad,
-        };
-        // Agregar el objeto a la lista de productos del pedido
-        productosPedido.push(productoPedido);
-      }
-    }
-
-    // Crear un objeto con la información del formulario y la lista de productos del pedido
-    var formData = {
-      nombre: nombre,
-      numero: numero,
-      direccion: direccion,
-      productosPedido: productosPedido,
-    };
-
-    // Llamar a la función postJSON para enviar los datos
-    await postJSON(formData);
-
-    limpiarCarrito();
-    alert("¡Compra realizada con éxito!");
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
-  }
-}
 
 /*
     --------------

@@ -421,31 +421,30 @@ document.querySelector(".botonComprar").addEventListener("click", function () {
   var direccion = document.getElementById("direccion").value;
 
   if (nombre && numero && direccion != "") {
+    // Obtiene la lista de productos del carrito
+    const listaProductos = document.querySelectorAll("#carritoList li");
+    console.log(listaProductos);
 
-  // Obtiene la lista de productos del carrito
-  const listaProductos = document.querySelectorAll("#carritoList li");
-  console.log(listaProductos);
+    // Filtra los elementos que no deseas incluir en la lista de productos
+    const productosFiltrados = [];
 
-  // Filtra los elementos que no deseas incluir en la lista de productos
-  const productosFiltrados = [];
+    listaProductos.forEach((producto) => {
+      productosFiltrados.push(producto.textContent.trim());
+    });
 
-  listaProductos.forEach((producto) => {
-    productosFiltrados.push(producto.textContent.trim());
-  });
+    console.log(productosFiltrados);
 
-  console.log(productosFiltrados);
+    // Convierte el array en una cadena de texto para incluirlo en la URL
+    const listaProductosURL = encodeURIComponent(
+      JSON.stringify(productosFiltrados)
+    );
 
-  // Convierte el array en una cadena de texto para incluirlo en la URL
-  const listaProductosURL = encodeURIComponent(
-    JSON.stringify(productosFiltrados)
-  );
+    // Guarda la lista de productos en la URL
+    window.history.pushState({}, "", "?productos=" + productosFiltrados);
 
-  // Guarda la lista de productos en la URL
-  window.history.pushState({}, "", "?productos=" + productosFiltrados);
-
-  limpiarCarrito();
-  const totalTextarea = document.getElementById("totalPrecio");
-  totalTextarea.value = 0;
+    limpiarCarrito();
+    const totalTextarea = document.getElementById("totalPrecio");
+    totalTextarea.value = 0;
     alert("Comprados Con Exito");
   } else {
     alert("Por favor llene todos los campos");
@@ -453,6 +452,38 @@ document.querySelector(".botonComprar").addEventListener("click", function () {
 });
 */
 
+document.getElementById("formulario").addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+  
+  // Obtén los valores de los campos del formulario
+  var nombre = document.getElementById("nombre").value;
+  var numero = document.getElementById("numero").value; 
+  var direccion = document.getElementById("direccion").value;
+  
+  // Realiza cualquier validación adicional aquí si es necesario
+  
+  // Crea un objeto FormData para enviar los datos del formulario
+  var formData = new FormData();
+  formData.append("nombre", nombre);
+  formData.append("numero", numero);
+  formData.append("direccion", direccion);
+
+  // Realiza la solicitud POST mediante fetch
+  fetch("https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Maneja la respuesta aquí si es necesario
+    console.log("Response:", data);
+    alert("¡Compra realizada con éxito!");
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
+  });
+});
 
 
 //FUNCION DE POST

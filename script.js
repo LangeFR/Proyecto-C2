@@ -199,7 +199,6 @@ async function añadirAlCarrito(idProducto) {
       const dataResponse = await response.json();
 
       const data = dataResponse.data; // Acceder al arreglo de objetos dentro de la propiedad "data"
-      console.log(data);
       nombreProducto = data[idProducto].Nombre;
       precioProducto = parseFloat(data[idProducto].Precio);
 
@@ -303,6 +302,7 @@ function agregarProductoALista(nombreProducto, precioProducto) {
     console.log(idJSON);
     cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
   }
+  console.log("listaJSON");
   console.log(listaJSON);
 }
 
@@ -379,8 +379,6 @@ function cargarCarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const carritoList = document.getElementById("carritoList");
   carritoList.innerHTML = "";
-  console.log("cargarCarrito: ");
-  console.log(carrito);
   carrito.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = `${item.nombre} - $${item.precio.toFixed(2)}`;
@@ -452,7 +450,17 @@ document.querySelector(".botonComprar").addEventListener("click", function () {
 });
 */
 
-
+function arrayCarrito(listaProductosJSON) {
+  const arrayCarrito = [];
+  for (const key in listaProductosJSON) {
+      if (listaProductosJSON.hasOwnProperty(key)) {
+          const producto = listaProductosJSON[key];
+          console.log(producto);
+          arrayCarrito.push(producto);
+      }
+  }
+  return arrayCarrito;
+}
 //ESTO ES PARA INTERCEPTAR Y QUE NO SE VAYA A LA WEBAPPSCRIPT. 
 
 document.getElementById("formulario").addEventListener("submit", function(event) {
@@ -468,7 +476,15 @@ document.getElementById("formulario").addEventListener("submit", function(event)
   formData.append("nombre", nombre);
   formData.append("numero", numero);
   formData.append("direccion", direccion);
+  formData.append("productosPedido", arrayCarrito(listaJSON));
+  console.log(arrayCarrito(listaJSON));
+  formData.append("total", precioTotal);
 
+  var object = {};
+  formData.forEach((value, key) => object[key] = value);
+  var json = JSON.stringify(object);
+  
+  mostrarLoading();
   // Realiza la solicitud POST mediante fetch
   fetch("https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec", {
     method: "POST",
@@ -478,12 +494,15 @@ document.getElementById("formulario").addEventListener("submit", function(event)
   .then(data => {
     
     console.log("Response:", data);
+    ocultarLoading();
     alert("¡Compra realizada con éxito!");
   })
   .catch(error => {
     console.error("Error:", error);
     alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
   });
+
+  limpiarCarrito();
 });
 
 

@@ -455,7 +455,7 @@ function arrayCarrito(listaProductosJSON) {
       arrayCarrito.push(producto);
     }
   }
-  return arrayCarrito;
+  return stringCarrito(arrayCarrito);
 }
 
 function stringCarrito(arrayCarrito) {

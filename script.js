@@ -453,57 +453,32 @@ document.querySelector(".botonComprar").addEventListener("click", function () {
 */
 
 
-//No he logrado que funcione... pero ya no redirecciona lo que es bueno
+//ESTO ES PARA INTERCEPTAR Y QUE NO SE VAYA A LA WEBAPPSCRIPT. 
 
-
-
-
-document.getElementById("formulario").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevents the form from being submitted by default
+ddocument.getElementById("formulario").addEventListener("submit", function(event) {
+  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
   
-  // Get the values of the form fields
+  // Obtén los valores de los campos del formulario
   var nombre = document.getElementById("nombre").value;
   var numero = document.getElementById("numero").value; 
   var direccion = document.getElementById("direccion").value;
   
-  // Create an array to store the information of each product in the cart
-  var productosPedido = [];
+  // Realiza cualquier validación adicional aquí si es necesario
   
-  // Iterate through the cart and get the information of each product
-  for (var clave in listaJSON) {
-    if (listaJSON.hasOwnProperty(clave)) {
-      var producto = listaJSON[clave];
-      // Create an object with the product information
-      var productoPedido = {
-        idProducto: producto.ID,
-        precio: producto.Precio,
-        cantidad: producto.Cantidad,
-      };
-      // Add the object to the list of products in the order
-      productosPedido.push(productoPedido);
-    }
-  }
-  
-  // Calculate the total value of the products
-  var total = productosPedido.reduce(function(total, producto) {
-    return total + (producto.precio * producto.cantidad);
-  }, 0);
-  
-  // Create an object with the form data and the list of products
-  var formData = {
-    nombre: nombre,
-    numero: numero,
-    direccion: direccion,
-    productosPedido: productosPedido,
-    total: total,
-  };
-  
+  // Crea un objeto FormData para enviar los datos del formulario
+  var formData = new FormData();
+  formData.append("nombre", nombre);
+  formData.append("numero", numero);
+  formData.append("direccion", direccion);
+
+  // Realiza la solicitud POST mediante fetch
   fetch("https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec", {
     method: "POST",
-    body: JSON.stringify(formData)
+    body: formData
   })
   .then(response => response.json())
   .then(data => {
+    // Maneja la respuesta aquí si es necesario
     console.log("Response:", data);
     alert("¡Compra realizada con éxito!");
   })
@@ -512,6 +487,7 @@ document.getElementById("formulario").addEventListener("submit", function(event)
     alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
   });
 });
+
 //FUNCION DE POST
 
 /*

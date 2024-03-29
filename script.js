@@ -105,10 +105,12 @@ document.addEventListener("DOMContentLoaded", () => {
                   }">                      
                       <img id="imagen${plato.ID}" src="${plato.Imagen ?? ""}"/>
                       <div class"infoPlatoContainer">
-                        <h3 class="nombre">${plato.Nombre ?? ""}</h3>
+                        <div class="nombrePrecioPlato">
+                          <h3 class="nombre">${plato.Nombre ?? ""}</h3>
+                          <p class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</p>
+                        </div>
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
                         <p class="id">ID:${plato.ID ?? ""}</p>
-                        <p class="precio">$${plato.Precio ?? "COP"}</p>
                         <button class="añadir-carrito" onClick="añadirAlCarrito(${
                           plato.ID
                         })">Agregar al carrito</button>
@@ -116,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                   <hr>
                     
-                `;
+          `;
+
+          let idPrecio = "precio" + quitarEspacios(plato.Nombre);
+          formatoPrecio(idPrecio);
 
           let tempID = "imagen" + plato.ID;
           let imagenPlato = document.getElementById(tempID);
@@ -164,19 +169,31 @@ document.addEventListener("DOMContentLoaded", () => {
   Precios
 */
 
-// Selecciona todos los elementos que tienen la clase 'precio'
-var elementosPrecio = document.querySelectorAll(".precio");
+function formatoPrecio(idPrecio) {
+  /*var elementosPrecio = document.querySelectorAll(".precio");
 
-// Itera sobre los elementos y aplica la lógica de manejo de precios
-elementosPrecio.forEach(function (elemento) {
-  // Obtiene el precio bruto del elemento
+  // Itera sobre los elementos y aplica la lógica de manejo de precios
+  elementosPrecio.forEach(function (elemento) {
+    // Obtiene el precio bruto del elemento
+    var precioBruto = parseFloat(elemento.textContent);
+    console.log(elemento);
+    console.log(elemento.textContent);
+    // Formatea y actualiza el precio mostrado
+    elemento.textContent = precioBruto.toLocaleString("es-CO", {
+      style: "currency",
+      currency: "COP",
+    });
+  });*/
+  var elemento = document.getElementById(idPrecio);
   var precioBruto = parseFloat(elemento.textContent);
-  // Formatea y actualiza el precio mostrado
+  
   elemento.textContent = precioBruto.toLocaleString("es-CO", {
     style: "currency",
     currency: "COP",
   });
-});
+}
+// Selecciona todos los elementos que tienen la clase 'precio'
+
 
 /*
     ------------------

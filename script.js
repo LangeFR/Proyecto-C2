@@ -201,6 +201,7 @@ async function añadirAlCarrito(idProducto) {
       const data = dataResponse.data; // Acceder al arreglo de objetos dentro de la propiedad "data"
       nombreProducto = data[idProducto].Nombre;
       precioProducto = parseFloat(data[idProducto].Precio);
+      idProducto = parseInt(data[idProducto].ID);
 
       ocultarLoading();
     } else {
@@ -212,12 +213,12 @@ async function añadirAlCarrito(idProducto) {
   }
 
   // Llama a una función para agregar el nombre del producto a la lista en el otro HTML
-  agregarProductoALista(nombreProducto, precioProducto);
+  agregarProductoALista(nombreProducto, precioProducto, idProducto);
   actualizarTotal(precioProducto);
 }
 
 // Función para agregar el nombre del producto a la lista en el otro HTML
-function agregarProductoALista(nombreProducto, precioProducto) {
+function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
   /*
     Revisar si el producto ya esta en la lista
   */
@@ -262,6 +263,7 @@ function agregarProductoALista(nombreProducto, precioProducto) {
       Nombre: nombreProducto,
       Precio: precioProducto,
       Cantidad: 1,
+      ID: idProducto,
     };
 
     let idItem = quitarEspacios(nombreProducto);
@@ -421,6 +423,19 @@ function arrayCarrito(listaProductosJSON) {
   return arrayCarrito;
 }
 
+function stringCarrito(arrayCarrito) {
+  let carritoString = "";
+  for (let i = 0; i < arrayCarrito.length; i++) {
+      const producto = arrayCarrito[i];
+      if(i === arrayCarrito.length - 1){
+        carritoString += `ID: ${producto.ID}, Precio: ${producto.Precio}, Cantidad: ${producto.Cantidad}`;
+      }else{
+        carritoString += `ID: ${producto.ID}, Precio: ${producto.Precio}, Cantidad: ${producto.Cantidad}\n`;
+      }
+  }
+  return carritoString;
+}
+
 //ESTO ES PARA INTERCEPTAR Y QUE NO SE VAYA A LA WEBAPPSCRIPT.
 
 document
@@ -474,3 +489,60 @@ document
     Carrito Final
     --------------
 */
+
+$(document).ready(function () {
+  var locker = $('.locker');
+          $("#go").click(function (e) {
+              e.preventDefault();
+                  $("#gridId").GridUnload();
+                  gridload();
+                  canClick = false;
+                  locker.css('display', 'block');
+          });
+      });
+
+
+      function gridload() {
+          $.ajax({
+              url: 'Default2.aspx/MyMethod?fromdate=' + $("#fromdate").val() + '&todate=' + $("#todate").val(),
+              dataType: 'json',
+              contentType: "application/json; charset=utf-8",
+              type: 'POST',
+              success: function (ReportDataNew, textStatus, XMLHttpRequest) {
+                  locker.css('display', 'none');
+                  //debugger;
+                  gridData = JSON.parse(ReportDataNew.d);
+                  //console.log(gridData);
+                  //alert(gridData.length);
+
+
+                  $("#gridId").jqGrid({
+                      data: gridData,
+                      datatype: "local",
+                      height: '100%',
+                      autowidth: true,
+                      ignoreCase: true,
+                      rowNum: 50,
+                      rowList: [50, 100, 200],
+                      colNames: ['UserName', 'Ordinal', 'Extension', 'Trunk', 'DialDate', 'DialTime', 'Duration', 'Destination', 'Price'],
+                      colModel: [
+                          { name: 'username', index: 'username', width: 100, editable: true, sortable: true, align: 'center' },
+                          { name: 'ordinal', index: 'ordinal', width: 100, editable: true, sortable: true, align: 'center' },
+                          { name: 'extension', index: 'extension', editable: true, width: 100, sortable: true, align: 'center' },
+                          { name: 'trunk', index: 'trunk', width: 100, editable: true, sortable: true, align: 'center' },
+                          { name: 'dialdate', index: 'dialdate', editable: true, width: 100, sortable: true, align: 'center' },
+                          { name: 'dialtime', index: 'dialtime', editable: true, width: 100, sortable: true, align: 'center' },
+                          { name: 'duration', index: 'duration', editable: true, width: 100, sortable: true, align: 'center' },
+                          { name: 'destination', index: 'destination', editable: true, width: 100, sortable: true, align: 'center' },
+                          { name: 'price', index: 'price', width: 100, editable: true, sortable: true, align: 'center' }
+
+                      ],
+                      pager: '#gridpager',
+                      viewrecords: true,
+                      toppager: true,
+                      loadtext: 'Loading...'
+
+                  });
+                }
+              });
+          }

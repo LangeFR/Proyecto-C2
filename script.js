@@ -320,9 +320,6 @@ function actualizarPrecioCarrito(nombreProducto, idProducto){
   let idStr = "precioCarrito" + quitarEspacios(nombreProducto);
   let precioElemento = document.getElementById(idStr);
 
-  console.log(listaJSON);
-  console.log("idProducto: ", idProducto);
-  console.log("id en el listaJSON", encontrarKeyPorID(listaJSON, idProducto));
   precioElemento.innerHTML = listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Precio * listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
   formatoPrecio(idStr);
 }
@@ -334,7 +331,6 @@ function masItem(idItem, idJSON) {
   let idStr = "cantidad" + idItem;
   let cantidadElemento = document.getElementById(idStr);
 
-  console.log("Boton Mas: ", listaJSON[idJSON].Cantidad);
   cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
 
   actualizarPrecioCarrito(listaJSON[idJSON].Nombre, listaJSON[idJSON].ID);
@@ -521,7 +517,20 @@ document
   });
 
     limpiarCarrito();
+    limpiarFormulario();
   });
+
+  function limpiarFormulario(){
+    // Limpia los valores de los campos del formulario
+    document.getElementById('nombre').value = '';
+    document.getElementById('numero').value = '';
+    document.getElementById('direccion').value = '';
+
+    // Restaura los placeholders de los campos del formulario
+    document.getElementById('nombre').placeholder = 'Escribe tu nombre';
+    document.getElementById('numero').placeholder = 'Escribe tu número';
+    document.getElementById('direccion').placeholder = 'Escribe tu dirección';
+  }
 
 /*
     --------------

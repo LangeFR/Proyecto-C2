@@ -565,16 +565,15 @@ ol {
 
 
 .loader {
-    width: 10px;
-    height: 10px;
-    animation: spin 5s linear infinite;
+    animation: spin 2s linear infinite;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -25px;
-    margin-left: -25px;
+    top: 35%;
+    left: 45%;
+    margin-top: -5px;
+    margin-left: -5px;
     display: none;
 }
+
 
 .hamburguesaloader{
     width: 200px;

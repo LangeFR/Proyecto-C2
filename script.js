@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function mostrarPlatosPorCategoria(categoria) {
     try {
       mostrarLoading(categoria);
+      mostrarBloqueoPantalla();
       const loading = document.getElementById("loader");
       infoPlato.innerHTML = "";
 
@@ -130,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
           infoPlatoId.setAttribute("style", "display: flex; gap: 10px;");
         });
         ocultarLoading();
+        ocultarBloqueoPantalla();
       } else {
         throw new Error("Error en la solicitud: " + response.status);
       }
@@ -190,6 +192,7 @@ async function añadirAlCarrito(idProducto) {
 
   try {
     mostrarLoading();
+    mostrarBloqueoPantalla();
     const loading = document.getElementById("loader");
 
     const response = await fetch(
@@ -204,6 +207,7 @@ async function añadirAlCarrito(idProducto) {
       idProducto = parseInt(data[idProducto].ID);
 
       ocultarLoading();
+      ocultarBloqueoPantalla();
     } else {
       throw new Error("Error en la solicitud: " + response.status);
     }
@@ -445,6 +449,7 @@ document.getElementById("formulario").addEventListener("submit", function(event)
   var json = JSON.stringify(object);
   
   mostrarLoading();
+  mostrarBloqueoPantalla();
   // Realiza la solicitud POST mediante fetch
   fetch("https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec", {
     method: "POST",
@@ -455,6 +460,7 @@ document.getElementById("formulario").addEventListener("submit", function(event)
     
     console.log("Response:", data);
     ocultarLoading();
+    ocultarBloqueoPantalla();
     alert("¡Compra realizada con éxito!");
   })
   .catch(error => {
@@ -472,59 +478,11 @@ document.getElementById("formulario").addEventListener("submit", function(event)
     --------------
 */
 
-$(document).ready(function () {
-  var locker = $('.locker');
-          $("#go").click(function (e) {
-              e.preventDefault();
-                  $("#gridId").GridUnload();
-                  gridload();
-                  canClick = false;
-                  locker.css('display', 'block');
-          });
-      });
 
+function mostrarBloqueoPantalla() {
+  document.getElementById('blockScreen').style.display = 'block';
+}
 
-      function gridload() {
-          $.ajax({
-              url: 'Default2.aspx/MyMethod?fromdate=' + $("#fromdate").val() + '&todate=' + $("#todate").val(),
-              dataType: 'json',
-              contentType: "application/json; charset=utf-8",
-              type: 'POST',
-              success: function (ReportDataNew, textStatus, XMLHttpRequest) {
-                  locker.css('display', 'none');
-                  //debugger;
-                  gridData = JSON.parse(ReportDataNew.d);
-                  //console.log(gridData);
-                  //alert(gridData.length);
-
-
-                  $("#gridId").jqGrid({
-                      data: gridData,
-                      datatype: "local",
-                      height: '100%',
-                      autowidth: true,
-                      ignoreCase: true,
-                      rowNum: 50,
-                      rowList: [50, 100, 200],
-                      colNames: ['UserName', 'Ordinal', 'Extension', 'Trunk', 'DialDate', 'DialTime', 'Duration', 'Destination', 'Price'],
-                      colModel: [
-                          { name: 'username', index: 'username', width: 100, editable: true, sortable: true, align: 'center' },
-                          { name: 'ordinal', index: 'ordinal', width: 100, editable: true, sortable: true, align: 'center' },
-                          { name: 'extension', index: 'extension', editable: true, width: 100, sortable: true, align: 'center' },
-                          { name: 'trunk', index: 'trunk', width: 100, editable: true, sortable: true, align: 'center' },
-                          { name: 'dialdate', index: 'dialdate', editable: true, width: 100, sortable: true, align: 'center' },
-                          { name: 'dialtime', index: 'dialtime', editable: true, width: 100, sortable: true, align: 'center' },
-                          { name: 'duration', index: 'duration', editable: true, width: 100, sortable: true, align: 'center' },
-                          { name: 'destination', index: 'destination', editable: true, width: 100, sortable: true, align: 'center' },
-                          { name: 'price', index: 'price', width: 100, editable: true, sortable: true, align: 'center' }
-
-                      ],
-                      pager: '#gridpager',
-                      viewrecords: true,
-                      toppager: true,
-                      loadtext: 'Loading...'
-
-                  });
-                }
-              });
-          }
+function ocultarBloqueoPantalla() {
+  document.getElementById('blockScreen').style.display = 'none';
+}

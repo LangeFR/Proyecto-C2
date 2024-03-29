@@ -379,10 +379,10 @@ function cargarCarrito() {
 }
 
 // Inicializar ScrollReveal
-// Inicializar ScrollReveal para todos los divs
+
 ScrollReveal().reveal('div', {
   delay: 300,
-  duration: 1000,
+  duration: 500,
   distance: '20px',
   origin: 'bottom',
   easing: 'cubic-bezier(0.5, 0, 0, 1)',

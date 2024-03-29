@@ -563,10 +563,10 @@ ol {
     }
 }
 
-
 .loader {
     animation: spin 2s linear infinite;
     position: fixed;
+    z-index: 999;
     top: 35%;
     left: 45%;
     margin-top: -5px;
@@ -576,8 +576,8 @@ ol {
 
 
 .hamburguesaloader{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 
 }
 
@@ -720,23 +720,13 @@ input[type="number"] {
     Landing Page Final
     ------------------
 */
-#blockScreen {
+.locker {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semitransparente */
-    z-index: 9999; /* Asegura que esté encima de otros elementos */
-    display: none; /* Inicialmente oculto */
-  }
-  
-  #blockScreenMessage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-  }
-  
+    background: rgba(0,0,0,0.8); /*lets make it semi-transparent */
+    z-index: 9999; /*because you could set some z-indexes in your code before, so lets make sure that this will be over every elements in html*/
+    }

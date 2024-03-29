@@ -455,13 +455,13 @@ document.querySelector(".botonComprar").addEventListener("click", function () {
 
 //ESTO ES PARA INTERCEPTAR Y QUE NO SE VAYA A LA WEBAPPSCRIPT. 
 
-ddocument.getElementById("formulario").addEventListener("submit", function(event) {
+document.getElementById("formulario").addEventListener("submit", function(event) {
   event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
   
   // Obtén los valores de los campos del formulario
   var nombre = document.getElementById("nombre").value;
   var numero = document.getElementById("numero").value; 
-  var direccion = document.getElementById("direccion").value;
+  var direccion = document.getElementById("direccion").value; 
   
   // Realiza cualquier validación adicional aquí si es necesario
   

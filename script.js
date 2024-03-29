@@ -249,6 +249,7 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
   for (var clave in listaJSON) {
     if (listaJSON.hasOwnProperty(clave)) {
       if (listaJSON[clave].Nombre === nombreProducto) {
+        console.log("Paso. Se añade Cantidad");
         yaEsta = true;
         listaJSON[clave].Cantidad++;
         break; // Termina el bucle una vez que se encuentra el objeto
@@ -292,25 +293,22 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
     carritoList.innerHTML += `
       <li class="item-lista" id="carrito${idItem}">
         <p>${nombreProducto}</p>
+        <p class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</p>
         <div class="cantidadItem">
-            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(
-      idItem
-    )}', '${String(idJSON)}')">+</button>
-            <p class="cantidadItem" id="cantidad${idItem}"> ${
-      listaJSON[idJSON].Cantidad
-    }</p>
-            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(
-      idItem
-    )}', '${String(idJSON)}')">-</button>
+            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
+            <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[idJSON].Cantidad}</p>
+            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(idItem)}', '${String(idJSON)}')">-</button>
         </div>
       </li>
     `;
+
+    let idPrecio = "precioCarrito" + quitarEspacios(listaJSON[idJSON].Nombre);
+    formatoPrecio(idPrecio);
   } else {
     let idStr = "cantidad" + quitarEspacios(nombreProducto);
     let cantidadElemento = document.getElementById(idStr);
-
-    console.log(idJSON);
-    cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
+    
+    cantidadElemento.innerHTML = listaJSON[idProducto].Cantidad;
   }
   console.log("listaJSON");
   console.log(listaJSON);
@@ -322,6 +320,7 @@ function masItem(idItem, idJSON) {
 
   let idStr = "cantidad" + idItem;
   let cantidadElemento = document.getElementById(idStr);
+
   cantidadElemento.innerHTML = listaJSON[idJSON].Cantidad;
 }
 

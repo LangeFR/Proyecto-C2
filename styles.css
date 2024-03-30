@@ -135,7 +135,6 @@
 .itemsCarrito,
 .resumenPago,
 .pago {
-    min-height: 205px;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,3 +1,22 @@
+window.onload = function() {
+  let objetoDiv = document.getElementById("itemsCarritoID");
+  let alturaPago = document.getElementById("pagoID").offsetHeight;
+  alturaPago -= 40;
+  objetoDiv.setAttribute(
+    "style",
+    "display: flex; justify-content: space-between; min-height: " + alturaPago + "px; flex: 1; background-color: #f0f0f0; border-radius: 10px; padding: 20px;"
+  );
+  objetoDiv = document.getElementById("resumenPagoID");
+  alturaPago = document.getElementById("pagoID").offsetHeight;
+  alturaPago -= 40;
+  objetoDiv.setAttribute(
+    "style",
+    "flex: 1; background-color: #f0f0f0; border-radius: 10px; padding: 20px; height: " + alturaPago + "px;"
+  );
+  
+};
+
+
 function quitarEspacios(string) {
   return string.replace(/\s/g, "");
 }
@@ -106,7 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
                       <img id="imagen${plato.ID}" src="${plato.Imagen ?? ""}"/>
                       <div class"infoPlatoContainer">
                         <div class="nombrePrecioPlato">
-                          <h3 class="nombre">${plato.Nombre ?? ""} - </h3>
+                          <h3 class="nombre">${plato.Nombre ?? ""}</h3>
+                          <h3> - </h3>
                           <h3 class="precio" id="precio${quitarEspacios(
                             plato.Nombre
                           )}">${plato.Precio}</h3>
@@ -193,12 +213,12 @@ function formatoPrecio(idPrecio) {
 let primerProducto = true;
 async function añadirAlCarrito(idProducto) {
   console.log(Object.keys(listaJSON).length);
-  if (Object.keys(listaJSON).length > 0) {
+  if (Object.keys(listaJSON).length > 1) {
     console.log("Entro if");
     let objetoDiv = document.getElementById("carritoComprasID");
     objetoDiv.setAttribute(
       "style",
-      "display: gap: 10px; flex; flex-direction: rom; align-items: center; justify-content: center; margin: 20px;"
+      "display: gap: 10px; flex; flex-direction: row; align-items: center; justify-content: center; margin: 20px;"
     );
   }
 
@@ -291,7 +311,8 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
     carritoList.innerHTML += `
       <li class="item-lista" id="carrito${idItem}">
         <div class="carritoNombrePrecio">
-            <h3>${nombreProducto} - </h3>
+            <h3>${nombreProducto}</h3>
+            <h3> - </h3>
             <h3 class="precio" id="precioCarrito${quitarEspacios(
               listaJSON[idJSON].Nombre
             )}">${listaJSON[idJSON].Precio}</h3>

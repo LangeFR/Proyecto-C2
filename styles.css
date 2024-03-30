@@ -96,7 +96,6 @@ link[rel="icon"] {
     flex: 1;
     border-radius: 10px;
     padding: 20px;
-    margin-right: 20px;
     max-width: 400px;
     color: white;
 }
@@ -110,7 +109,9 @@ link[rel="icon"] {
     background-color: #f0f0f0;
     border-radius: 10px;
     padding: 20px;
+    height: fit-content;
 }
+
 
 .carrito {
     border-radius: 10px;
@@ -132,7 +133,6 @@ link[rel="icon"] {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-    margin-right: 20px;
     color: rgb(255, 162, 0);
 }
 
@@ -462,6 +462,8 @@ ol {
 }
 
 .itemsCarrito {
+    display: flex;
+    justify-content: space-between;
     height: 100%;
     flex: 1;
     background-color: #f0f0f0;
@@ -503,14 +505,11 @@ ol {
     padding: 20px;
 }
 
-.resumen {
-    margin-bottom: 20px;
-}
-
 .resumen h2 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
+    margin-top: 0px;
 }
 
 .total-container {
@@ -540,6 +539,7 @@ ol {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
+    margin-top: 0px;
 }
 
 .imagenpago {
@@ -567,6 +567,9 @@ ol {
         display: flex;
         flex-direction: column;
         gap: 10px;
+    }
+    .carritoComprasID{
+        align-items: stretch;
     }
 }
 @media (max-width: 820px) {
@@ -722,6 +725,8 @@ input[type="number"] {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
+
 }
 
 .botonComprar:hover {

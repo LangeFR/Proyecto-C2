@@ -1,4 +1,5 @@
 window.onload = function() {
+  actualizarTotal(0);
   let objetoDiv = document.getElementById("itemsCarritoID");
   let alturaPago = document.getElementById("pagoID").offsetHeight;
   alturaPago -= 40;

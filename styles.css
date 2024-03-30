@@ -87,10 +87,7 @@ link[rel="icon"] {
     Carrito Inicio
     --------------
 */
-.resumenPago {
-    max-width: 400px;
 
-}
 
 .resumen {
     flex: 1;
@@ -738,7 +735,29 @@ input[type="number"] {
     flex-direction: row;
 }
 
+#totalTituloValor{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 0 auto;
+}
+h7{
+    font-size: 30px;
+}
+#totalPrecio{
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    height: auto;
+    text-align: center;
+}
 
+#imagenResumen{
+    max-width: 33%;
+    display: block; /* Para que la imagen se comporte como un bloque */
+    margin: 0 auto;
+}
 
 /*
     ------------------

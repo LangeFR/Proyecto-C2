@@ -425,10 +425,10 @@ function cargarCarrito() {
 
 // Inicializar ScrollReveal
 
-ScrollReveal().reveal('header, .inputUsuario, #divPresentacion, .categorias, footer', {
+ScrollReveal().reveal('header, .seleccionaYapping, .hamburguesacentral, #divPresentacion, .categorias, footer', {
   delay: 300,
   duration: 500,
-  distance: '20px',
+  distance: '100px',  
   origin: 'bottom',
   easing: 'cubic-bezier(0.5, 0, 0, 1)',
   opacity: 0,

@@ -1,3 +1,7 @@
+link[rel="icon"] {
+    filter: brightness(0%) invert(1); /* Cambia el color a negro */
+}
+
 /*
     -------------
     Navbar inicio

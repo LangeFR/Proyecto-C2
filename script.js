@@ -106,7 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
                       <img id="imagen${plato.ID}" src="${plato.Imagen ?? ""}"/>
                       <div class"infoPlatoContainer">
                         <div class="nombrePrecioPlato">
-                          <h3 class="nombre">${plato.Nombre ?? ""} - </h3>
+                          <h3 class="nombre">${plato.Nombre ?? ""}</h3>
+                          <h3> - </h3>
                           <h3 class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</h3>
                         </div>
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
@@ -304,7 +305,8 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
     carritoList.innerHTML += `
       <li class="item-lista" id="carrito${idItem}">
         <div class="carritoNombrePrecio">
-            <h3>${nombreProducto} - </h3>
+            <h3>${nombreProducto}</h3>
+            <h3> - <h3>
             <h3 class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</h3>
         </div>
         <div class="cantidadItem">

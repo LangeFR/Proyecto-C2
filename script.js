@@ -293,8 +293,8 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
 
     carritoList.innerHTML += `
       <li class="item-lista" id="carrito${idItem}">
-        <p>${nombreProducto} - </p>
-        <p class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</p>
+        <h3>${nombreProducto} - </h3>
+        <h3 class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</h3>
         <div class="cantidadItem">
             <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
             <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[idJSON].Cantidad}</p>

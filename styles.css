@@ -412,7 +412,8 @@ ol {
 .somos {
     padding: 60px 0;
     text-align: center;
-    background-color: #fcad3e;
+    background-color: #ff9809;
+    color: #000;
 }
 
 #somos {
@@ -422,7 +423,7 @@ ol {
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: #fcad3e;
+    background-color: #ff9500;
     border: 2px solid #000;
     border-radius: 10px;
     padding: 20px;
@@ -431,17 +432,18 @@ ol {
     color: #000;
 }
 
+.section-description {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #000000;
+}
+
 .section-title {
     font-size: 36px;
     margin-bottom: 20px;
     color: #333;
 }
 
-.section-description {
-    font-size: 18px;
-    margin-bottom: 40px;
-    color: #555;
-}
 
 .main {
     display: flex;

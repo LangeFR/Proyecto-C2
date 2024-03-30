@@ -166,8 +166,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 #totalPrecio {
@@ -193,6 +192,7 @@
 .cantidadItem {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 /*
@@ -224,6 +224,7 @@ html,
 body {
     max-height: 100vw;
     margin: 0;
+    background-color: rgb(48, 46, 46);
 }
 
 
@@ -244,32 +245,25 @@ body {
 }
 
 .imagenesDescripcion {
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin: 18px;
     border-radius: 20px 20px 20px 20px;
     max-height: 150px;
     aspect-ratio: 150 / 100;
     object-fit: cover;
 }
 
-#hamburguesaDescripcion {
-    margin-left: 5px;
-}
 
-#malteadaDescripcion {
-    margin-top: 5px;
-    margin-right: 5px;
-}
 
 
 
 .presentacion {
     align-items: center;
     display: flex;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 10px;
     font-family: sans-serif;
     color: #000;
     background-color: #ffa600;
+    margin: 20px;
 }
 
 #divPresentacion {
@@ -289,10 +283,7 @@ body {
     /* Color del texto */
 }
 
-body {
-    background-color: white;
 
-}
 
 #btnReadMorePresentacion {
     margin: 5px;
@@ -608,7 +599,7 @@ ol {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
     justify-content: center;
     align-items: center;
 }
@@ -652,6 +643,7 @@ ol {
     background-color: rgb(47, 47, 47);
     color: white !important;
     text-emphasis-color: rgb(48, 46, 46);
+    margin-left:20px;
 }
 
 .menu {
@@ -714,6 +706,11 @@ input[type="number"] {
 
 .botonComprar:hover {
     background-color: #0056b3;
+}
+
+.nombrePrecioPlato{
+    display: flex;
+    flex-direction: row;
 }
 
 

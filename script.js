@@ -38,11 +38,11 @@ function readMorePresentacion() {
     hamburguesaImg.style.marginLeft = "5px"; // Restablecer margen izquierdo
     hamburguesaImg.setAttribute(
       "style",
-      "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;"
+      "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin: 18px; max-height: 150px;"
     );
     malteadaImg.setAttribute(
       "style",
-      "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;"
+      "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin: 18px; max-height: 150px;"
     );
   } else {
     dots.style.display = "none";
@@ -106,8 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
                       <img id="imagen${plato.ID}" src="${plato.Imagen ?? ""}"/>
                       <div class"infoPlatoContainer">
                         <div class="nombrePrecioPlato">
-                          <h3 class="nombre">${plato.Nombre ?? ""}</h3>
-                          <p class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</p>
+                          <h3 class="nombre">${plato.Nombre ?? ""} - </h3>
+                          <h3 class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</h3>
                         </div>
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
                         <p class="id">ID: ${plato.ID ?? ""}</p>
@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "style",
             "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;"
           );
+
 
           tempID = "infoPlatoContainer" + plato.ID;
           let infoPlatoId = document.getElementById(tempID);
@@ -292,7 +293,7 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
 
     carritoList.innerHTML += `
       <li class="item-lista" id="carrito${idItem}">
-        <p>${nombreProducto}</p>
+        <p>${nombreProducto} - </p>
         <p class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</p>
         <div class="cantidadItem">
             <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
@@ -301,6 +302,20 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
         </div>
       </li>
     `;
+
+    let btnMasHTMLID = "btnMasItem" + idItem;
+    let btnMas = document.getElementById(btnMasHTMLID);
+    btnMas.setAttribute(
+      "style",
+      "height: 20px; width: 20px; padding: 0px"
+    );
+
+    let btnMenosHTMLID = "btnMenosItem" + idItem;
+    let btnMenos = document.getElementById(btnMenosHTMLID);
+    btnMenos.setAttribute(
+      "style",
+      "height: 20px; width: 20px;  padding: 0px"
+    );
 
     let idPrecio = "precioCarrito" + quitarEspacios(listaJSON[idJSON].Nombre);
     formatoPrecio(idPrecio);

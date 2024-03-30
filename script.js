@@ -203,8 +203,18 @@ function formatoPrecio(idPrecio) {
 */
 
 ///----------------------
-
+let primerProducto = true;
 async function añadirAlCarrito(idProducto) {
+  console.log(Object.keys(listaJSON).length);
+  if(Object.keys(listaJSON).length > 0) {
+    console.log("Entro if");
+    let objetoDiv = document.getElementById('carritoComprasID');
+    objetoDiv.setAttribute(
+      "style",
+      "display: gap: 10px; flex; flex-direction: rom; align-items: center; justify-content: center; margin: 20px;"
+    );
+  }
+
   let nombreProducto;
   let precioProducto;
 
@@ -293,8 +303,10 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
 
     carritoList.innerHTML += `
       <li class="item-lista" id="carrito${idItem}">
-        <h3>${nombreProducto} - </h3>
-        <h3 class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</h3>
+        <div class="carritoNombrePrecio">
+            <h3>${nombreProducto} - </h3>
+            <h3 class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</h3>
+        </div>
         <div class="cantidadItem">
             <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
             <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[idJSON].Cantidad}</p>
@@ -543,7 +555,7 @@ document
 
     // Restaura los placeholders de los campos del formulario
     document.getElementById('nombre').placeholder = 'Escribe tu nombre';
-    document.getElementById('numero').placeholder = 'Escribe tu número';
+    document.getElementById('numero').placeholder = 'Escribe tu # de telefono';
     document.getElementById('direccion').placeholder = 'Escribe tu dirección';
   }
 

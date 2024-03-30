@@ -170,6 +170,7 @@ link[rel="icon"] {
     align-items: center;
     flex-wrap: wrap;
     margin: 20px;
+    align-items: stretch;
 }
 
 #totalPrecio {
@@ -185,11 +186,16 @@ link[rel="icon"] {
 
 .item-lista {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
     margin-top: 5px;
     flex-wrap: wrap;
-    align-items: center;
+    
+}
+
+.carritoNombrePrecio{
+    display: flex;
+    flex-direction: row;
 }
 
 .cantidadItem {
@@ -470,6 +476,8 @@ ol {
 }
 
 .itemsCarrito ul {
+    overflow: auto;
+    max-height: 345px;
     list-style-type: none;
     padding: 0;
 }
@@ -555,6 +563,13 @@ ol {
 }
 
 @media (max-width: 680px) {
+    .carritoCompras {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+@media (max-width: 820px) {
     .presentacion {
         flex-direction: column;
     }

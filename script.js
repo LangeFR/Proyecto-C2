@@ -172,20 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 */
 
 function formatoPrecio(idPrecio) {
-  /*var elementosPrecio = document.querySelectorAll(".precio");
 
-  // Itera sobre los elementos y aplica la lógica de manejo de precios
-  elementosPrecio.forEach(function (elemento) {
-    // Obtiene el precio bruto del elemento
-    var precioBruto = parseFloat(elemento.textContent);
-    console.log(elemento);
-    console.log(elemento.textContent);
-    // Formatea y actualiza el precio mostrado
-    elemento.textContent = precioBruto.toLocaleString("es-CO", {
-      style: "currency",
-      currency: "COP",
-    });
-  });*/
   var elemento = document.getElementById(idPrecio);
   var precioBruto = parseFloat(elemento.textContent);
 

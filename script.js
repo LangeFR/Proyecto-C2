@@ -107,7 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
                       <div class"infoPlatoContainer">
                         <div class="nombrePrecioPlato">
                           <h3 class="nombre">${plato.Nombre ?? ""} - </h3>
-                          <h3 class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</h3>
+                          <h3 class="precio" id="precio${quitarEspacios(
+                            plato.Nombre
+                          )}">${plato.Precio}</h3>
                         </div>
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
                         <p class="id">ID: ${plato.ID ?? ""}</p>
@@ -130,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "style",
             "aspect-ratio: 150 / 100; min-height: 150px; min-width: 225px; max-width: 225px; margin-top: 5px; max-height: 150px;"
           );
-
 
           tempID = "infoPlatoContainer" + plato.ID;
           let infoPlatoId = document.getElementById(tempID);
@@ -187,14 +188,13 @@ function formatoPrecio(idPrecio) {
   });*/
   var elemento = document.getElementById(idPrecio);
   var precioBruto = parseFloat(elemento.textContent);
-  
+
   elemento.textContent = precioBruto.toLocaleString("es-CO", {
     style: "currency",
     currency: "COP",
   });
 }
 // Selecciona todos los elementos que tienen la clase 'precio'
-
 
 /*
     ------------------
@@ -206,9 +206,9 @@ function formatoPrecio(idPrecio) {
 let primerProducto = true;
 async function añadirAlCarrito(idProducto) {
   console.log(Object.keys(listaJSON).length);
-  if(Object.keys(listaJSON).length > 0) {
+  if (Object.keys(listaJSON).length > 0) {
     console.log("Entro if");
-    let objetoDiv = document.getElementById('carritoComprasID');
+    let objetoDiv = document.getElementById("carritoComprasID");
     objetoDiv.setAttribute(
       "style",
       "display: gap: 10px; flex; flex-direction: rom; align-items: center; justify-content: center; margin: 20px;"
@@ -305,37 +305,40 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
       <li class="item-lista" id="carrito${idItem}">
         <div class="carritoNombrePrecio">
             <h3>${nombreProducto} - </h3>
-            <h3 class="precio" id="precioCarrito${quitarEspacios(listaJSON[idJSON].Nombre)}">${listaJSON[idJSON].Precio}</h3>
+            <h3 class="precio" id="precioCarrito${quitarEspacios(
+              listaJSON[idJSON].Nombre
+            )}">${listaJSON[idJSON].Precio}</h3>
         </div>
         <div class="cantidadItem">
-            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
-            <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[idJSON].Cantidad}</p>
-            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(idItem)}', '${String(idJSON)}')">-</button>
+            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(
+      idItem
+    )}', '${String(idJSON)}')">+</button>
+            <p class="cantidadItem" id="cantidad${idItem}"> ${
+      listaJSON[idJSON].Cantidad
+    }</p>
+            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(
+      idItem
+    )}', '${String(idJSON)}')">-</button>
         </div>
       </li>
     `;
 
     let btnMasHTMLID = "btnMasItem" + idItem;
     let btnMas = document.getElementById(btnMasHTMLID);
-    btnMas.setAttribute(
-      "style",
-      "height: 20px; width: 20px; padding: 0px"
-    );
+    btnMas.setAttribute("style", "height: 20px; width: 20px; padding: 0px");
 
     let btnMenosHTMLID = "btnMenosItem" + idItem;
     let btnMenos = document.getElementById(btnMenosHTMLID);
-    btnMenos.setAttribute(
-      "style",
-      "height: 20px; width: 20px;  padding: 0px"
-    );
+    btnMenos.setAttribute("style", "height: 20px; width: 20px;  padding: 0px");
 
     let idPrecio = "precioCarrito" + quitarEspacios(listaJSON[idJSON].Nombre);
     formatoPrecio(idPrecio);
   } else {
     let idStr = "cantidad" + quitarEspacios(nombreProducto);
     let cantidadElemento = document.getElementById(idStr);
-    
-    cantidadElemento.innerHTML = listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
+
+    cantidadElemento.innerHTML =
+      listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
 
     actualizarPrecioCarrito(nombreProducto, idProducto);
   }
@@ -343,11 +346,13 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
   console.log(listaJSON);
 }
 
-function actualizarPrecioCarrito(nombreProducto, idProducto){
+function actualizarPrecioCarrito(nombreProducto, idProducto) {
   let idStr = "precioCarrito" + quitarEspacios(nombreProducto);
   let precioElemento = document.getElementById(idStr);
 
-  precioElemento.innerHTML = listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Precio * listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
+  precioElemento.innerHTML =
+    listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Precio *
+    listaJSON[encontrarKeyPorID(listaJSON, idProducto)].Cantidad;
   formatoPrecio(idStr);
 }
 
@@ -437,19 +442,30 @@ function cargarCarrito() {
 
 // Inicializar ScrollReveal
 
-ScrollReveal().reveal('header, .seleccionaYapping, .hamburguesacentral, #divPresentacion, .categorias, footer', {
+ScrollReveal().reveal(
+  "header, .seleccionaYapping, .hamburguesacentral, #divPresentacion, .categorias, footer",
+  {
+    delay: 300,
+    duration: 500,
+    distance: "100px",
+    origin: "bottom",
+    easing: "cubic-bezier(0.5, 0, 0, 1)",
+    opacity: 0,
+    reset: true,
+    scale: 0.9,
+  }
+);
+
+ScrollReveal().reveal(".inputUsuario, footer", {
   delay: 300,
-  duration: 500,
-  distance: '100px',  
-  origin: 'bottom',
-  easing: 'cubic-bezier(0.5, 0, 0, 1)',
+  duration: 1000,
+  distance: "300px",
+  origin: "bottom",
+  easing: "cubic-bezier(0, 0, 0, 1)",
   opacity: 0,
-  reset: true,
+  reset: false,
   scale: 0.9,
 });
-
-
-
 
 // Event listener para cargar el carrito cuando la página se cargue
 window.addEventListener("load", cargarCarrito);
@@ -462,7 +478,6 @@ function limpiarCarrito() {
   const totalTextarea = document.getElementById("totalPrecio");
   totalTextarea.value = 0;
 }
-
 
 // Event listener para cargar el carrito cuando la página se cargue
 window.addEventListener("load", cargarCarrito);
@@ -488,12 +503,12 @@ function arrayCarrito(listaProductosJSON) {
 function stringCarrito(arrayCarrito) {
   let carritoString = "";
   for (let i = 0; i < arrayCarrito.length; i++) {
-      const producto = arrayCarrito[i];
-      if(i === arrayCarrito.length - 1){
-        carritoString += `ID: ${producto.ID}, Precio: ${producto.Precio}, Cantidad: ${producto.Cantidad}`;
-      }else{
-        carritoString += `ID: ${producto.ID}, Precio: ${producto.Precio}, Cantidad: ${producto.Cantidad}\n`;
-      }
+    const producto = arrayCarrito[i];
+    if (i === arrayCarrito.length - 1) {
+      carritoString += `ID: ${producto.ID}, Precio: ${producto.Precio}, Cantidad: ${producto.Cantidad}`;
+    } else {
+      carritoString += `ID: ${producto.ID}, Precio: ${producto.Precio}, Cantidad: ${producto.Cantidad}\n`;
+    }
   }
   return carritoString;
 }
@@ -519,45 +534,47 @@ document
     console.log(arrayCarrito(listaJSON));
     formData.append("total", precioTotal);
 
-  var object = {};
-  formData.forEach((value, key) => object[key] = value);
-  var json = JSON.stringify(object);
-  
-  mostrarLoading();
-  mostrarBloqueoPantalla();
-  // Realiza la solicitud POST mediante fetch
-  fetch("https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => {
-    
-    console.log("Response:", data);
-    ocultarLoading();
-    ocultarBloqueoPantalla();
-    alert("¡Compra realizada con éxito!");
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
-  });
+    var object = {};
+    formData.forEach((value, key) => (object[key] = value));
+    var json = JSON.stringify(object);
+
+    mostrarLoading();
+    mostrarBloqueoPantalla();
+    // Realiza la solicitud POST mediante fetch
+    fetch(
+      "https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response:", data);
+        ocultarLoading();
+        ocultarBloqueoPantalla();
+        alert("¡Compra realizada con éxito!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error al enviar el formulario. Por favor, inténtalo de nuevo.");
+      });
 
     limpiarCarrito();
     limpiarFormulario();
   });
 
-  function limpiarFormulario(){
-    // Limpia los valores de los campos del formulario
-    document.getElementById('nombre').value = '';
-    document.getElementById('numero').value = '';
-    document.getElementById('direccion').value = '';
+function limpiarFormulario() {
+  // Limpia los valores de los campos del formulario
+  document.getElementById("nombre").value = "";
+  document.getElementById("numero").value = "";
+  document.getElementById("direccion").value = "";
 
-    // Restaura los placeholders de los campos del formulario
-    document.getElementById('nombre').placeholder = 'Escribe tu nombre';
-    document.getElementById('numero').placeholder = 'Escribe tu # de telefono';
-    document.getElementById('direccion').placeholder = 'Escribe tu dirección';
-  }
+  // Restaura los placeholders de los campos del formulario
+  document.getElementById("nombre").placeholder = "Escribe tu nombre";
+  document.getElementById("numero").placeholder = "Escribe tu # de telefono";
+  document.getElementById("direccion").placeholder = "Escribe tu dirección";
+}
 
 /*
     --------------
@@ -565,13 +582,12 @@ document
     --------------
 */
 
-
 function mostrarBloqueoPantalla() {
-  document.getElementById('blockScreen').style.display = 'block';
+  document.getElementById("blockScreen").style.display = "block";
 }
 
 function ocultarBloqueoPantalla() {
-  document.getElementById('blockScreen').style.display = 'none';
+  document.getElementById("blockScreen").style.display = "none";
 }
 
 function encontrarKeyPorID(json, id) {
@@ -580,6 +596,11 @@ function encontrarKeyPorID(json, id) {
       return key; // Devuelve el key si encuentra el elemento con el ID especificado
     }
   }
-  console.log("encontrarKeyPorID: No se encontro el ID ", id, "  de producto en JSON ", json);
+  console.log(
+    "encontrarKeyPorID: No se encontro el ID ",
+    id,
+    "  de producto en JSON ",
+    json
+  );
   return null; // Devuelve null si no se encuentra ningún elemento con el ID especificado
 }

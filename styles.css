@@ -466,6 +466,7 @@ ol {
     background-color: #f0f0f0;
     border-radius: 10px;
     padding: 20px;
+    min-width: 30%;
 }
 
 .itemsCarrito h2 {

@@ -529,6 +529,11 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
 
+    if (Object.keys(listaJSON).length === 0) {
+      window.alert("No hay productos en el carrito");
+      return;
+
+    }
     // Obtén los valores de los campos del formulario
     var nombre = document.getElementById("nombre").value;
     var numero = document.getElementById("numero").value;
@@ -571,6 +576,7 @@ document
 
     limpiarCarrito();
     limpiarFormulario();
+    actualizarTotal(0);
   });
 
 function limpiarFormulario() {

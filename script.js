@@ -90,10 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const listaItemsEntrada = document.getElementById("listaItemsEntrada");
   const listaItemsBebidas = document.getElementById("listaItemsBebidas");
   const listaItemsPostres = document.getElementById("listaItemsPostres");
-  const InfoEntradas = document.querySelector("#InfoEntradas");
-  const InfoPrincipales = document.querySelector("#InfoPrincipales");
-  const InfoBebidas = document.querySelector("#InfoBebidas");
-  const InfoPostres = document.querySelector("#InfoPostres");
   const infoPlato = document.querySelector(".InfoPlato");
 
   if (infoPlato.innerHTML.trim() === "") {
@@ -128,9 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="nombrePrecioPlato">
                           <h3 class="nombre">${plato.Nombre ?? ""}</h3>
                           <h3> - </h3>
-                          <h3 class="precio" id="precio${quitarEspacios(
-                            plato.Nombre
-                          )}">${plato.Precio}</h3>
+                          <h3 class="precio" id="precio${quitarEspacios(plato.Nombre)}">${plato.Precio}</h3>
                         </div>
                         <p class="descripcion">${plato.Descripcion ?? ""}</p>
                         <p class="id">ID: ${plato.ID ?? ""}</p>
@@ -211,11 +205,8 @@ function formatoPrecio(idPrecio) {
 */
 
 ///----------------------
-let primerProducto = true;
 async function añadirAlCarrito(idProducto) {
-  console.log(Object.keys(listaJSON).length);
-  if (Object.keys(listaJSON).length > 1) {
-    console.log("Entro if");
+  if (arrayCarrito(listaJSON).length > 1) {
     let objetoDiv = document.getElementById("carritoComprasID");
     objetoDiv.setAttribute(
       "style",
@@ -229,7 +220,6 @@ async function añadirAlCarrito(idProducto) {
   try {
     mostrarLoading();
     mostrarBloqueoPantalla();
-    const loading = document.getElementById("loader");
 
     const response = await fetch(
       "https://script.google.com/macros/s/AKfycbwgidJUqj5RAmPH_sZQVA2D-rHAcxO4bKfAjG2ursRCa3o7dbFZ36WafHT0-Z-bCr8X/exec"
@@ -319,15 +309,9 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
             )}">${listaJSON[idJSON].Precio}</h3>
         </div>
         <div class="cantidadItem">
-            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(
-      idItem
-    )}', '${String(idJSON)}')">+</button>
-            <p class="cantidadItem" id="cantidad${idItem}"> ${
-      listaJSON[idJSON].Cantidad
-    }</p>
-            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(
-      idItem
-    )}', '${String(idJSON)}')">-</button>
+            <button class="btnMasItem" id="btnMasItem${idItem}" onclick="masItem('${String(idItem)}', '${String(idJSON)}')">+</button>
+            <p class="cantidadItem" id="cantidad${idItem}"> ${listaJSON[idJSON].Cantidad}</p>
+            <button class="btnMenosItem" id="btnMenosItem${idItem}" onclick="menosItem('${String(idItem)}', '${String(idJSON)}')">-</button>
         </div>
       </li>
     `;
@@ -502,7 +486,6 @@ function arrayCarrito(listaProductosJSON) {
   for (const key in listaProductosJSON) {
     if (listaProductosJSON.hasOwnProperty(key)) {
       const producto = listaProductosJSON[key];
-      console.log(producto);
       arrayCarrito.push(producto);
     }
   }
@@ -545,8 +528,7 @@ document
     formData.append("numero", numero);
     formData.append("direccion", direccion);
     formData.append("productosPedido", arrayCarrito(listaJSON));
-    console.log(arrayCarrito(listaJSON));
-    formData.append("total", precioTotal);
+    formData.append("total", precioTotal);  
 
     var object = {};
     formData.forEach((value, key) => (object[key] = value));

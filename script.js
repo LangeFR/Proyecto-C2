@@ -258,7 +258,6 @@ function agregarProductoALista(nombreProducto, precioProducto, idProducto) {
   for (var clave in listaJSON) {
     if (listaJSON.hasOwnProperty(clave)) {
       if (listaJSON[clave].Nombre === nombreProducto) {
-        console.log("Paso. Se añade Cantidad");
         yaEsta = true;
         listaJSON[clave].Cantidad++;
         break; // Termina el bucle una vez que se encuentra el objeto
@@ -382,7 +381,6 @@ function menosItem(idItem, idJSON) {
   }
 
   actualizarTotal(precio);
-  console.log(listaJSON);
 }
 
 // Variable para almacenar el precio total
@@ -546,7 +544,6 @@ document
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("Response:", data);
         ocultarLoading();
         ocultarBloqueoPantalla();
         alert("¡Compra realizada con éxito!");
